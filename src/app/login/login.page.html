@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar class="text-center">
+    <ion-title>Sistema Gestor de Incidentes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen>
+  <div class="container">
+    <div class="content">
+      <form (ngSubmit)="login($event)">
+        <ion-item>
+          <ion-label position="floating">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            Correo electrónico
+          </ion-label>
+          <ion-input type="email" [(ngModel)]="ct_correo_institucional" name="ct_correo_institucional" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            Contraseña
+          </ion-label>
+          <ion-input type="password" [(ngModel)]="ct_contrasena" name="ct_contrasena" required></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" type="submit">Iniciar sesión</ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>
