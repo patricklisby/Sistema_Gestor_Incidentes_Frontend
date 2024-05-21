@@ -1,21 +1,55 @@
-.title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-}
-
 .container {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #2596be;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, #ececec, #ffffff);
 }
 
 .content {
-    width: 90%;
-    max-width: 400px;
+  background: rgb(23, 36, 152);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.intro-image img {
+  max-width: 150px;
+  margin-bottom: 20px;
+}
+
+.intro-text {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+ion-item {
+  margin-bottom: 15px;
+}
+
+.custom-button {
+  --background: white; /* Color de fondo del botón */
+  --background-activated: #f0f0f0; /* Color de fondo cuando se presiona el botón */
+  --background-focused: #f0f0f0; /* Color de fondo cuando el botón está enfocado */
+  --background-hover: #f0f0f0; /* Color de fondo cuando se pasa el ratón por encima */
+  --color: black; /* Color del texto del botón */
+  border: 1px solid #3880ff; /* Borde del botón */
+}
+
+.custom-button:hover {
+  --background: #f0f0f0; /* Color de fondo al pasar el ratón */
+}
+
+ion-label {
+  display: flex;
+  align-items: center;
+}
+
+ion-label ion-icon {
+  margin-right: 8px;
 }

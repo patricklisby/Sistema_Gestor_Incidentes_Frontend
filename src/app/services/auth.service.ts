@@ -21,7 +21,7 @@ export class AuthService {
     } catch (error) {
       console.error('Login error:', error);
       const alert = await this.alertController.create({
-        header: 'Contraseña incorrecta',
+        header: 'Error al ingresar.',
         message: 'Correo o contraseña incorrectos. Inténtalo de nuevo.',
         buttons: ['OK']
       });
