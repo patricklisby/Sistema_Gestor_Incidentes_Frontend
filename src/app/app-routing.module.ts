@@ -22,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'ver_incidencias',
-   component: VerIncidenciasComponent
+   component: VerIncidenciasComponent,
+ 
   },
   {
     path: 'ver_incidencias_completa/:ct_id_incidencia',
@@ -39,7 +40,8 @@ const routes: Routes = [
   {
     path: 'ver_diagnosticos/:ct_id_incidencia',
    component: RegistrarIncidenciasComponent
-  }
+  },
+
   
 ];
 

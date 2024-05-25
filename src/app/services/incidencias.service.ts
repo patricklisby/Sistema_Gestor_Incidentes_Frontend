@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';
 
 @Injectable({
@@ -7,12 +7,17 @@ import { AlertController } from '@ionic/angular';
 })
 export class IncidenciasService {
 
-
   private apiURL = 'http://127.0.0.1:3000/';
+  private tokenKey = 'authToken';
   constructor(private http: HttpClient, private alertController: AlertController) { }
 
   async mostrar_incidencias(): Promise<any> {
     try {
+      const token = localStorage.getItem(this.tokenKey);
+      //console.log(token);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
       const response = await this.http.get(`${this.apiURL}mostrar_incidentes`).toPromise();
       console.log('Mostrar incidencias', response);
       return response;
@@ -24,6 +29,11 @@ export class IncidenciasService {
 
   async mostrar_incidencias_por_id(ct_id_incidencia: string): Promise<any> {
     try {
+      const token = localStorage.getItem(this.tokenKey);
+      //console.log(token);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
       console.log(ct_id_incidencia + " Esto es lo que tiene de id");
       
       const response = await this.http.get(`${this.apiURL}mostrar_incidentes_por_id/${ct_id_incidencia}`).toPromise();
@@ -37,6 +47,11 @@ export class IncidenciasService {
 
   async mostrar_incidencias_por_usuario(ct_id_incidencia: string): Promise<any> {
     try {
+      const token = localStorage.getItem(this.tokenKey);
+      //console.log(token);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
       console.log(ct_id_incidencia + " Esto es lo que tiene de id");
       
       const response = await this.http.get(`${this.apiURL}mostrar_incidencias_por_usuario/${ct_id_incidencia}`).toPromise();
@@ -50,6 +65,11 @@ export class IncidenciasService {
 
   async registrar_incidencia(ct_titulo_incidencia: string, ct_descripcion_incidencia: string, ct_lugar: string, cn_id_usuario_registro: number): Promise<any> {
     try {
+      const token = localStorage.getItem(this.tokenKey);
+      //console.log(token);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
 
       const requestBody = {
         ct_titulo_incidencia,

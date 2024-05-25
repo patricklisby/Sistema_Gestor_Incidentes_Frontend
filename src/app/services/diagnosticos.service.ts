@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';
 
 @Injectable({
@@ -9,11 +9,17 @@ export class DiagnosticosService {
 
   
   private apiURL = 'http://127.0.0.1:3000/';
+  private tokenKey = 'authToken';
   constructor(private http: HttpClient, private alertController: AlertController) { }
 
 
   async mostrar_diagnosticos_por_id(ct_id_incidencia: string): Promise<any> {
     try {
+      const token = localStorage.getItem(this.tokenKey);
+      //console.log(token);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
       console.log(ct_id_incidencia + " Esto es lo que tiene de id");
       
       const response = await this.http.get(`${this.apiURL}mostrar_diagnosticos_por_id/${ct_id_incidencia}`).toPromise();
@@ -27,6 +33,11 @@ export class DiagnosticosService {
 
   async mostrar_diagnosticos_por_usuario(ct_id_incidencia: string): Promise<any> {
     try {
+      const token = localStorage.getItem(this.tokenKey);
+      //console.log(token);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
       console.log(ct_id_incidencia + " Esto es lo que tiene de id");
       
       const response = await this.http.get(`${this.apiURL}mostrar_diagnosticos_por_usuario/${ct_id_incidencia}`).toPromise();
@@ -40,7 +51,11 @@ export class DiagnosticosService {
 
   async registrar_diagnosticos(ct_diagnostico:string, cn_tiempo_estimado_reparacion:string, ct_observaciones:string, ct_id_incidencia:string, cn_id_usuario: number): Promise<any> {
     try {
-
+      const token = localStorage.getItem(this.tokenKey);
+      //console.log(token);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
       const requestBody = {
         ct_diagnostico,
         cn_tiempo_estimado_reparacion,
