@@ -43,4 +43,8 @@ export class VerIncidenciasCompletaComponent implements OnInit {
   navigateToIncidencias() {
     this.router.navigate(['/ver_incidencias']);
   }
+
+  navigateToCreateDiagnosticos(ct_id_incidencia: string) {
+    this.router.navigate(['/registrar_diagnosticos', ct_id_incidencia]);
+  }
 }

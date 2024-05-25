@@ -1,0 +1,38 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Registrar Diagnóstico</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <!-- Mostrar el valor de ct_id_incidencia -->
+    <p>ID de Incidencia: {{ ct_id_incidencia }}</p>
+    <ion-button shape="round" (click)="navigateToIncidencias(ct_id_incidencia)">Volver</ion-button>
+    <form [formGroup]="diagnosticoForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label position="floating">Diagnóstico</ion-label>
+        <ion-input type="text" formControlName="ct_diagnostico" id="ct_diagnostico"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Tiempo Estimado de Reparación</ion-label>
+        <ion-input type="number" formControlName="cn_tiempo_estimado_reparacion" id="cn_tiempo_estimado_reparacion"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Observaciones</ion-label>
+        <ion-textarea formControlName="ct_observaciones" id="ct_observaciones"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">ID de Incidencia</ion-label>
+        <ion-input type="text" formControlName="ct_id_incidencia" id="ct_id_incidencia"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">ID de Usuario Registro</ion-label>
+        <ion-input type="number" formControlName="cn_id_usuario_registro" id="cn_id_usuario_registro" [value]="1"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" [disabled]="!diagnosticoForm.valid">Registrar</ion-button>
+    </form>
+  </ion-card-content>
+</ion-card>
