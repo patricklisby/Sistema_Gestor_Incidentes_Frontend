@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { VerIncidenciasComponent } from './ver-incidencias/ver-incidencias.component';
+import { VerIncidenciasCompletaComponent } from './ver-incidencias-completa/ver-incidencias-completa.component';
 
 const routes: Routes = [
   {
@@ -14,7 +16,16 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'ver_incidencias',
+   component: VerIncidenciasComponent
+  },
+  {
+    path: 'ver_incidencias_completa/:ct_id_incidencia',
+   component: VerIncidenciasCompletaComponent
   }
+  
 ];
 
 @NgModule({

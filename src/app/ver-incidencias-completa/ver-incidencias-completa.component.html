@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Incidencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="incidencias-content">
+  <ion-card *ngFor="let incidencia of incidencias" class="incidencia-card">
+    <ion-card-header>
+      <ion-card-title>{{ incidencia.ct_titulo_incidencia }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="incidencia-details">
+        <p><strong>Descripción:</strong> {{ incidencia.ct_descripcion_incidencia }}</p>
+        <p><strong>Lugar:</strong> {{ incidencia.ct_lugar }}</p>
+        <p><strong>Estado:</strong> {{ incidencia.cn_id_estado }}</p>
+        <p><strong>Imagen:</strong> {{ incidencia.cn_id_imagen }}</p>
+        <p><strong>Usuario Registro:</strong> {{ incidencia.cn_id_usuario_registro }}</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

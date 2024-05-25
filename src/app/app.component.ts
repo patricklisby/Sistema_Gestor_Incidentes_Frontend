@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Registrar Incidencias', url: '/folder/inbox', icon: 'add' },
-    { title: 'Ver Incidencias', url: '/folder/outbox', icon: 'eye' },
+    { title: 'Registrar Incidencias', url: '/ver_incidencias', icon: 'add' },
+    { title: 'Ver Incidencias', url: '/ver_incidencias', icon: 'eye' },
     { title: 'Gestionar Incidencias', url: '/folder/favorites', icon: 'extension-puzzle' },
     { title: 'Gestionar Sistema', url: '/folder/apps', icon: 'apps' },
   ];

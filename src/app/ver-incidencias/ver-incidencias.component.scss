@@ -1,0 +1,61 @@
+/* src/app/ver-incidencias/ver-incidencias.component.scss */
+ion-header {
+  ion-toolbar {
+    background-color: #2c3e50; /* Color del header */
+    color: white;
+  }
+
+  ion-title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  ion-buttons {
+    ion-button {
+      color: white;
+    }
+  }
+}
+
+ion-content {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 16px;
+}
+
+.incidence-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+ion-item {
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+ion-item h2 {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #000;
+}
+
+ion-item p {
+  font-size: 1em;
+  color: #666;
+}
+
+ion-button {
+  --border-radius: 5px;
+  --background: #28a745;
+  --background-activated: #218838;
+  --background-focused: #218838;
+  --background-hover: #218838;
+  color: white;
+  margin-left: 16px;
+  align-self: right;
+}

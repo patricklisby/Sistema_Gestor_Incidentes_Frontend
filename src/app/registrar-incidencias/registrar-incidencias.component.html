@@ -1,0 +1,15 @@
+<form [formGroup]="incidenciaForm" (ngSubmit)="onSubmit()">
+  <label for="ct_titulo_incidencia">Título de la incidencia</label>
+  <input type="text" formControlName="ct_titulo_incidencia" id="ct_titulo_incidencia">
+
+  <label for="ct_descripcion_incidencia">Descripción de la incidencia</label>
+  <textarea formControlName="ct_descripcion_incidencia" id="ct_descripcion_incidencia"></textarea>
+
+  <label for="ct_lugar">Lugar</label>
+  <input type="text" formControlName="ct_lugar" id="ct_lugar">
+
+  <label for="cn_id_imagen">ID de imagen</label>
+  <input type="number" formControlName="cn_id_imagen" id="cn_id_imagen">
+
+  <button type="submit" [disabled]="!incidenciaForm.valid">Registrar</button>
+</form>
