@@ -38,15 +38,15 @@ export class DiagnosticosService {
     }
   }//End of mostrar_incidencias_por_id
 
-  async registrar_diagnosticos(ct_diagnostico:string, ct_tiempo_estimado_reparacion:string, ct_observaciones:string, ct_id_incidencia:string, cn_id_usuario_registro: number): Promise<any> {
+  async registrar_diagnosticos(ct_diagnostico:string, cn_tiempo_estimado_reparacion:string, ct_observaciones:string, ct_id_incidencia:string, cn_id_usuario: number): Promise<any> {
     try {
 
       const requestBody = {
         ct_diagnostico,
-        ct_tiempo_estimado_reparacion,
+        cn_tiempo_estimado_reparacion,
         ct_observaciones,
         ct_id_incidencia,
-        cn_id_usuario_registro,
+        cn_id_usuario,
       };
       //console.log(requestBody);
 

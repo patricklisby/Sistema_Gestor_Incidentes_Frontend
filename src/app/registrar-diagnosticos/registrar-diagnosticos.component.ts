@@ -27,7 +27,7 @@ export class RegistrarDiagnosticosComponent implements OnInit {
       cn_tiempo_estimado_reparacion: ['', Validators.required],
       ct_observaciones: ['', Validators.required],
       ct_id_incidencia: ['', Validators.required],
-      cn_id_usuario_registro: ['1'] // Considera usar un valor dinámico si es necesario
+      cn_id_usuario: ['1'] // Considera usar un valor dinámico si es necesario
     });
   }
 
@@ -41,11 +41,11 @@ export class RegistrarDiagnosticosComponent implements OnInit {
 
   async onSubmit() {
     if (this.diagnosticoForm.valid) {
-      const { ct_diagnostico, cn_tiempo_estimado_reparacion, ct_observaciones, ct_id_incidencia, cn_id_usuario_registro } = this.diagnosticoForm.value;
-      //console.log("Diagnostico: "+ct_diagnostico+ "\n"+"Tiempo: "+cn_tiempo_estimado_reparacion+ "\n" +"Observacion: "+ct_observaciones+ "\n"+"Id Inicidencia: "+ct_id_incidencia+ "\n"+"id usuario: "+cn_id_usuario_registro+ "\n");
+      const { ct_diagnostico, cn_tiempo_estimado_reparacion, ct_observaciones, ct_id_incidencia, cn_id_usuario } = this.diagnosticoForm.value;
+      //console.log("Diagnostico: "+ct_diagnostico+ "\n"+"Tiempo: "+cn_tiempo_estimado_reparacion+ "\n" +"Observacion: "+ct_observaciones+ "\n"+"Id Inicidencia: "+ct_id_incidencia+ "\n"+"id usuario: "+cn_id_usuario+ "\n");
       try {
         // Llama al servicio para registrar el diagnóstico
-       const result =  await this.diagnosticosService.registrar_diagnosticos(ct_diagnostico, cn_tiempo_estimado_reparacion, ct_observaciones, ct_id_incidencia, cn_id_usuario_registro);
+       const result =  await this.diagnosticosService.registrar_diagnosticos(ct_diagnostico, cn_tiempo_estimado_reparacion, ct_observaciones, ct_id_incidencia, cn_id_usuario);
         console.log(result);
         
         console.log('Diagnóstico registrado con éxito');
