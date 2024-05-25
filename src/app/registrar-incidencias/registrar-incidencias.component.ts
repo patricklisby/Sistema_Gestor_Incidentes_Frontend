@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IncidenciasService } from '../services/incidencias.service';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-incidencias',
@@ -9,12 +12,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegistrarIncidenciasComponent implements OnInit {
   incidenciaForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder, 
+    private incidenciasService: IncidenciasService, 
+    private toastController: ToastController,
+    private router: Router // Inyecta el Router aquí
+  ) {
     this.incidenciaForm = this.fb.group({
       ct_titulo_incidencia: ['', Validators.required],
       ct_descripcion_incidencia: ['', Validators.required],
       ct_lugar: ['', Validators.required],
-      cn_id_imagen: [null] // Puedes añadir validaciones si lo deseas
+      cn_id_usuario_registro: ['1'] // Considera usar un valor dinámico si es necesario
     });
   }
 
@@ -22,15 +30,45 @@ export class RegistrarIncidenciasComponent implements OnInit {
 
   async onSubmit() {
     if (this.incidenciaForm.valid) {
-      const { ct_titulo_incidencia, ct_descripcion_incidencia, ct_lugar, cn_id_imagen } = this.incidenciaForm.value;
+      const { ct_titulo_incidencia, ct_descripcion_incidencia, ct_lugar, cn_id_usuario_registro } = this.incidenciaForm.value;
       try {
-        // Llamar a tu servicio para registrar la incidencia
-        // await this.servicio.registrar_incidencia(ct_titulo_incidencia, ct_descripcion_incidencia, ct_lugar, cn_id_imagen);
+        await this.incidenciasService.registrar_incidencia(ct_titulo_incidencia, ct_descripcion_incidencia, ct_lugar, cn_id_usuario_registro);
+        console.log('Incidencia registrada con éxito');
+        const successToast = await this.toastController.create({
+          message: 'Incidencia registrada con éxito',
+          duration: 1500,
+          position: 'top',
+          color: 'success'
+        });
+        await successToast.present();
+        
+        // Navegar a la ruta 'ver_incidencias' después del éxito
+        this.router.navigate(['/ver_incidencias']);
       } catch (error) {
         console.error('Error al registrar la incidencia:', error);
+        const errorToast = await this.toastController.create({
+          message: 'Error al registrar la incidencia',
+          duration: 1500,
+          position: 'top',
+          color: 'danger'
+        });
+        await errorToast.present();
       }
     } else {
-      // Mostrar mensajes de error o tomar alguna acción
+      console.log('Formulario no válido');
+      const invalidFormToast = await this.toastController.create({
+        message: 'Por favor, complete todos los campos requeridos',
+        duration: 1500,
+        position: 'top',
+        color: 'warning'
+      });
+      await invalidFormToast.present();
     }
+  }//End of submit
+
+  navigateToIncidencias() {
+    this.router.navigate(['/ver_incidencias']);
   }
+
+
 }

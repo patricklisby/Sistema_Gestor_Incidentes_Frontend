@@ -12,12 +12,14 @@ import { ReactiveFormsModule } from '@angular/forms'; // Importar aquí
 
 import { VerIncidenciasComponent } from './ver-incidencias/ver-incidencias.component';
 import { VerIncidenciasCompletaComponent } from './ver-incidencias-completa/ver-incidencias-completa.component';
+import { RegistrarIncidenciasComponent } from './registrar-incidencias/registrar-incidencias.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VerIncidenciasComponent,
-    VerIncidenciasCompletaComponent
+    VerIncidenciasCompletaComponent,
+    RegistrarIncidenciasComponent
 
   ],
   imports:[

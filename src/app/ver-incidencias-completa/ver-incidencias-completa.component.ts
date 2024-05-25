@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IncidenciasService } from '../services/incidencias.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ver-incidencias-completa',
@@ -13,7 +14,8 @@ export class VerIncidenciasCompletaComponent implements OnInit {
 
   constructor(
     private incidenciasService: IncidenciasService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -36,5 +38,9 @@ export class VerIncidenciasCompletaComponent implements OnInit {
     } catch (error) {
       console.error('Error loading incidencia', error);
     }
+  }//end of loadIncidencias
+
+  navigateToIncidencias() {
+    this.router.navigate(['/ver_incidencias']);
   }
 }

@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content class="incidencias-content">
+  <ion-button shape="round" (click)="navigateToIncidencias()">Volver</ion-button>
   <ion-card *ngFor="let incidencia of incidencias" class="incidencia-card">
     <ion-card-header>
       <ion-card-title>{{ incidencia.ct_titulo_incidencia }}</ion-card-title>
