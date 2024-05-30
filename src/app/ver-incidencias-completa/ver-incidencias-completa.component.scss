@@ -54,3 +54,43 @@
   /* Cambia el color del texto del botón cuando está activo */
   color: #fff;
 }
+
+.diagnosticos-details {
+  padding: 20px;
+}
+
+.diagnosticos-details h3 {
+  margin-bottom: 15px;
+}
+
+.diagnosticos-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.diagnosticos-table th,
+.diagnosticos-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+
+/* Estilos CSS para tabla responsive */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+}
+
+
+
+/* Estilos para hacer la tabla responsive */
+.table-responsive {
+  overflow-x: auto;
+}

@@ -72,7 +72,25 @@ export class DiagnosticosService {
       console.error('Hubo un error en registro de diagnosticos', error);
       throw error;
     }
-  }
+  }//End of registrar_diagnosticos
+
+  async mostrar_diagnosticos_por_id_incidencia(ct_id_incidencia: string): Promise<any> {
+    try {
+      const token = localStorage.getItem(this.tokenKey);
+      //console.log(token);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      console.log(ct_id_incidencia + " Esto es lo que tiene de id");
+      
+      const response = await this.http.get(`${this.apiURL}mostrar_diagnosticos_id_incidencia/${ct_id_incidencia}`).toPromise();
+      console.log('Mostrar diagnosticos por id incidentes', response);
+      return response;
+    } catch (error) {
+      console.error('Error en mostrar_diagnosticos_por_id:', error);
+      throw error;
+    }
+  }//End of mostrar_diagnosticos_por_id_incidencia
 
   
 }

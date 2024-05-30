@@ -20,6 +20,36 @@
       </div>
     </ion-card-content>
     <button class="custom-button" (click)="navigateToCreateDiagnosticos(incidencia.ct_id_incidencia)">Registrar Diagnóstico</button>
+  </ion-card>
 
+  <ion-card>
+    <ion-card-content>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Fecha de diagnóstico</th>
+              <th>Diagnóstico</th>
+              <th>Tiempo estimado de reparación</th>
+              <th>Imagen</th>
+              <th>Observaciones</th>
+              <th>ID Incidencia</th>
+              <th>ID Usuario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let diagnostico of diagnosticos">
+              <td>{{ diagnostico.cf_fecha_hora_diagnostico }}</td>
+              <td>{{ diagnostico.ct_diagnostico }}</td>
+              <td>{{ diagnostico.cn_tiempo_estimado_reparacion }}</td>
+              <td>{{ diagnostico.cn_id_imagen }}</td>
+              <td>{{ diagnostico.ct_observaciones }}</td>
+              <td>{{ diagnostico.ct_id_incidencia }}</td>
+              <td>{{ diagnostico.cn_id_usuario }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ion-card-content>
   </ion-card>
 </ion-content>
