@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';
+import {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,6 @@ export class AuthService {
 
   constructor(private http: HttpClient, private alertController: AlertController) { }
 
-
   isAuthenticatedSesion(): boolean {
     return this.isAuthenticated;
   }
@@ -27,6 +25,7 @@ export class AuthService {
   
       if (response && response.token) {
         localStorage.setItem(this.tokenKey, response.token);
+        this.isAuthenticated = true; // Marcar como autenticado
         return response;
       } else {
         console.error('La respuesta no contiene el token:', response);
@@ -48,13 +47,13 @@ export class AuthService {
       await alert.present();
     }
   }
-  
 
   async logout(): Promise<any> {
     try {
       const response = await this.http.post(`${this.apiURL}logout`, null).toPromise();
       console.log('Logout exitoso', response);
-      // Realizar acciones adicionales si es necesario, como redirigir al usuario
+      localStorage.removeItem(this.tokenKey);  // Remover el token del localStorage
+      this.isAuthenticated = false; // Marcar como no autenticado
       return response;
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
@@ -68,9 +67,21 @@ export class AuthService {
         buttons: ['OK']
       });
       await alert.present();
-      throw error; // Lanza el error para que el componente que llama pueda manejarlo si es necesario
+      throw error;
     }
   }
-  
- 
-}//End of AuthService
+
+  getUserInfo(): any {
+    const token = localStorage.getItem(this.tokenKey);
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        return decodedToken;
+      } catch (error) {
+        console.error('Error al decodificar el token:', error);
+        return null;
+      }
+    }
+    return null;
+  }
+}

@@ -1,0 +1,28 @@
+/* src/app/app.component.scss o src/global.scss */
+
+ion-menu {
+    --background: #f0f0f5;
+  }
+  
+  ion-toolbar {
+    --background: #3880ff;
+    --color: #fff;
+  }
+  
+  ion-item {
+    margin: 0.8em 0;  /* Aumenta el margen vertical para más espaciado */
+    padding: 1em 0.5em;  /* Aumenta el relleno interno para más espaciado */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  ion-item ion-icon {
+    color: #3880ff;
+    margin-right: 10px;  /* Aumenta el margen derecho del icono */
+  }
+  
+  ion-item ion-label {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  

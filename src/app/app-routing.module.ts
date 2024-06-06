@@ -9,12 +9,8 @@ import { VerDiagnosticosComponent } from './ver-diagnosticos/ver-diagnosticos.co
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'login', 
     pathMatch: 'full'
-  },
-  {
-    path: 'folder/:id',
-    loadChildren: () => import('./sidemenu/folder.module').then( m => m.FolderPageModule)
   },
   {
     path: 'login',
@@ -22,16 +18,15 @@ const routes: Routes = [
   },
   {
     path: 'ver_incidencias',
-   component: VerIncidenciasComponent,
- 
+    component: VerIncidenciasComponent,
   },
   {
     path: 'ver_incidencias_completa/:ct_id_incidencia',
-   component: VerIncidenciasCompletaComponent
+    component: VerIncidenciasCompletaComponent
   },
   {
     path: 'registrar_incidencia',
-   component: RegistrarIncidenciasComponent
+    component: RegistrarIncidenciasComponent
   },
   {
     path: 'registrar_diagnosticos/:ct_id_incidencia',
@@ -39,10 +34,8 @@ const routes: Routes = [
   },
   {
     path: 'ver_diagnosticos/:ct_id_incidencia',
-   component: RegistrarIncidenciasComponent
+    component: VerDiagnosticosComponent // Corrige este componente
   },
-
-  
 ];
 
 @NgModule({

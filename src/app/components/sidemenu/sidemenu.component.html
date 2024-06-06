@@ -1,0 +1,33 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>{{ nombreUsuario || 'Menú' }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item (click)="navegar_incidentes()">
+        <ion-icon slot="start" name="add"></ion-icon>
+        <ion-label>Registrar Incidencias</ion-label>
+      </ion-item>
+      <ion-item (click)="navegar_ver_incidencias()">
+        <ion-icon slot="start" name="eye"></ion-icon>
+        <ion-label>Ver Incidencias</ion-label>
+      </ion-item>
+      <ion-item (click)="navegar_gestionar_incidencias()">
+        <ion-icon slot="start" name="extension-puzzle"></ion-icon>
+        <ion-label>Gestionar Incidencias</ion-label>
+      </ion-item>
+      <ion-item (click)="navegar_gestionar_sistema()">
+        <ion-icon slot="start" name="apps"></ion-icon>
+        <ion-label>Gestionar Sistema</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="full" color="danger" (click)="cerrar_sesion()">
+      <ion-icon slot="start" name="log-out"></ion-icon>
+      Logout
+    </ion-button>
+  </ion-content>
+</ion-menu>
