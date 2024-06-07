@@ -35,22 +35,21 @@ export class LoginPage implements OnInit {
       if (response) {
         const userInfo = this.authService.getUserInfo();
         if (userInfo) {
-          this.showToast(`Usuario logueado: ${userInfo.nombre}`);
+          this.showToast(`Bienvenido, ${userInfo.nombre}`);
         }
-        this.router.navigate(['/ver_incidencias']); // Cambia esta línea
+        this.router.navigate(['/ver_incidencias']);
       }
     } catch (error) {
       console.error('No se pudo iniciar sesión', error);
+      this.showToast('No se pudo iniciar sesión');
     }
   }
-  
-  
 
   async showToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
       duration: 3000,
-      position: 'bottom'
+      position: 'top'
     });
     toast.present();
   }

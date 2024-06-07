@@ -50,10 +50,13 @@ export class AuthService {
 
   async logout(): Promise<any> {
     try {
-      const response = await this.http.post(`${this.apiURL}logout`, null).toPromise();
+      const token = localStorage.getItem(this.tokenKey);
+      const response = await this.http.post(`${this.apiURL}logout`, null, {
+        headers: { Authorization: `Bearer ${token}` }
+      }).toPromise();
       console.log('Logout exitoso', response);
-      localStorage.removeItem(this.tokenKey);  // Remover el token del localStorage
-      this.isAuthenticated = false; // Marcar como no autenticado
+      localStorage.removeItem(this.tokenKey);
+      this.isAuthenticated = false;
       return response;
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
