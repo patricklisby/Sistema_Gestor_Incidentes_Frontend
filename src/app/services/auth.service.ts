@@ -26,6 +26,7 @@ export class AuthService {
       if (response && response.token) {
         localStorage.setItem(this.tokenKey, response.token);
         this.isAuthenticated = true; // Marcar como autenticado
+        console.log('Token almacenado en localStorage:', response.token); // Verificar que el token se almacena
         return response;
       } else {
         console.error('La respuesta no contiene el token:', response);
@@ -79,6 +80,7 @@ export class AuthService {
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
+        console.log('Token decodificado:', decodedToken); // Verificar el contenido del token decodificado
         return decodedToken;
       } catch (error) {
         console.error('Error al decodificar el token:', error);
@@ -86,5 +88,11 @@ export class AuthService {
       }
     }
     return null;
+  }
+  
+  getUserId(): number | null {
+    const userInfo = this.getUserInfo();
+    console.log('Información del usuario:', userInfo); // Verificar la información del usuario
+    return userInfo ? userInfo.id : null;
   }
 }

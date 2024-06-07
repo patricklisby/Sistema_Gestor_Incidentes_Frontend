@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DiagnosticosService } from '../services/diagnosticos.service';
 import { ToastController } from '@ionic/angular';
 import { Camera, CameraResultType } from '@capacitor/camera';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-registrar-diagnosticos',
@@ -14,13 +15,15 @@ export class RegistrarDiagnosticosComponent implements OnInit {
   diagnosticoForm: FormGroup;
   ct_id_incidencia: string;
   photo: string | null = null;
+  userId: number | null = null;
 
   constructor(
     private fb: FormBuilder, 
     private diagnosticosService: DiagnosticosService, 
     private toastController: ToastController,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService // Inyecta AuthService
   ) {
     this.ct_id_incidencia = '';
     this.diagnosticoForm = this.fb.group({
@@ -28,7 +31,7 @@ export class RegistrarDiagnosticosComponent implements OnInit {
       cn_tiempo_estimado_reparacion: ['', Validators.required],
       ct_observaciones: ['', Validators.required],
       ct_id_incidencia: ['', Validators.required],
-      cn_id_usuario: ['1', Validators.required]
+      cn_id_usuario: ['']
     });
   }
 
@@ -37,6 +40,14 @@ export class RegistrarDiagnosticosComponent implements OnInit {
       this.ct_id_incidencia = params.get('ct_id_incidencia') ?? '';
       this.diagnosticoForm.patchValue({ ct_id_incidencia: this.ct_id_incidencia });
     });
+
+    this.userId = this.authService.getUserInfo().userId; // Obtiene el ID del usuario logueado
+    console.log('User ID obtenido:', this.userId); // Verificar el ID obtenido
+    if (this.userId) {
+      this.diagnosticoForm.patchValue({ cn_id_usuario: this.userId });
+    } else {
+      console.log("No hay sesión");
+    }
   }
 
   async takePhoto() {

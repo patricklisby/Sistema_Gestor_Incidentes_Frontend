@@ -1,47 +1,44 @@
-<ion-card class="responsive-card">
-  <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title class="centered-title">Registrar Diagnóstico</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-card-content>
-    <p>ID de Incidencia: {{ ct_id_incidencia }}</p>
-    <ion-button shape="round" (click)="navigateToIncidencias(ct_id_incidencia)">Volver</ion-button>
-    <form [formGroup]="diagnosticoForm" (ngSubmit)="onSubmit()">
-      <ion-item>
-        <ion-label position="floating">Diagnóstico</ion-label>
-        <ion-input type="text" formControlName="ct_diagnostico" id="ct_diagnostico"></ion-input>
-      </ion-item>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="centered-title">Registrar Diagnóstico</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-button shape="round" (click)="navigateToIncidencias(ct_id_incidencia)">Volver</ion-button>
+  <form [formGroup]="diagnosticoForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Diagnóstico</ion-label>
+      <ion-input type="text" formControlName="ct_diagnostico" id="ct_diagnostico"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Tiempo Estimado de Reparación</ion-label>
-        <ion-input type="number" formControlName="cn_tiempo_estimado_reparacion" id="cn_tiempo_estimado_reparacion"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Tiempo Estimado de Reparación</ion-label>
+      <ion-input type="number" formControlName="cn_tiempo_estimado_reparacion" id="cn_tiempo_estimado_reparacion"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Observaciones</ion-label>
-        <ion-textarea formControlName="ct_observaciones" id="ct_observaciones"></ion-textarea>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">Observaciones</ion-label>
+      <ion-textarea formControlName="ct_observaciones" id="ct_observaciones"></ion-textarea>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">ID de Incidencia</ion-label>
-        <ion-input type="text" formControlName="ct_id_incidencia" id="ct_id_incidencia"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">ID de Incidencia</ion-label>
+      <ion-input type="text" formControlName="ct_id_incidencia" id="ct_id_incidencia"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">ID de Usuario Registro</ion-label>
-        <ion-input type="number" formControlName="cn_id_usuario" id="cn_id_usuario" [value]="1"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="floating">ID de Usuario Registro</ion-label>
+      <ion-input type="number" formControlName="cn_id_usuario" id="cn_id_usuario" [value]="1"></ion-input>
+    </ion-item>
 
-      <ion-button expand="block" type="button" (click)="takePhoto()">Tomar Foto</ion-button>
-      <div *ngIf="photo" class="photo-container">
-        <img [src]="photo" alt="Foto tomada" class="responsive-img" />
-      </div>
+    <ion-button expand="block" type="button" (click)="takePhoto()">Tomar Foto</ion-button>
+    <div *ngIf="photo" class="photo-container">
+      <img [src]="photo" alt="Foto tomada" class="responsive-img" />
+    </div>
 
-      <ion-button expand="block" type="submit" [disabled]="!diagnosticoForm.valid">Registrar</ion-button>
-    </form>
-  </ion-card-content>
-</ion-card>
+    <ion-button expand="block" type="submit" [disabled]="!diagnosticoForm.valid">Registrar</ion-button>
+  </form>
+</ion-content>

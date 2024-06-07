@@ -4,32 +4,42 @@ import { IncidenciasService } from '../services/incidencias.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType } from '@capacitor/camera';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-registrar-incidencias',
   templateUrl: './registrar-incidencias.component.html',
   styleUrls: ['./registrar-incidencias.component.scss'],
 })
-
 export class RegistrarIncidenciasComponent implements OnInit {
   incidenciaForm: FormGroup;
   photo: string | null = null;
+  userId: number | null = null;
 
   constructor(
     private fb: FormBuilder, 
     private incidenciasService: IncidenciasService, 
     private toastController: ToastController,
-    private router: Router
+    private router: Router,
+    private authService: AuthService // Inyecta AuthService
   ) {
     this.incidenciaForm = this.fb.group({
       ct_titulo_incidencia: ['', Validators.required],
       ct_descripcion_incidencia: ['', Validators.required],
       ct_lugar: ['', Validators.required],
-      cn_id_usuario_registro: ['', Validators.required], // Considera usar un valor dinámico si es necesario
+      cn_id_usuario_registro: [''],
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userId = this.authService.getUserInfo().userId; // Obtiene el ID del usuario logueado
+    console.log('User ID obtenido:', this.userId); // Verificar el ID obtenido
+    if (this.userId) {
+      this.incidenciaForm.patchValue({ cn_id_usuario_registro: this.userId });
+    } else {
+      console.log("No hay sesión");
+    }
+  }
 
   async takePhoto() {
     const image = await Camera.getPhoto({
