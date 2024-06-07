@@ -1,7 +1,12 @@
 <ion-card>
-  <ion-card-header>
-    <ion-card-title>Registrar Incidencia</ion-card-title>
-  </ion-card-header>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="centered-title">Registrar Incidencias</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <ion-card-content>
     <ion-button shape="round" (click)="navigateToIncidencias()">Volver</ion-button>
     <form [formGroup]="incidenciaForm" (ngSubmit)="onSubmit()">
