@@ -15,11 +15,14 @@
         <p><strong>Descripción:</strong> {{ incidencia.ct_descripcion_incidencia }}</p>
         <p><strong>Lugar:</strong> {{ incidencia.ct_lugar }}</p>
         <p><strong>Estado:</strong> {{ incidencia.cn_id_estado }}</p>
-        <p><strong>Imagen:</strong> {{ incidencia.cn_id_imagen }}</p>
         <p><strong>Usuario Registro:</strong> {{ incidencia.cn_id_usuario_registro }}</p>
+        <div *ngIf="incidencia.cb_imagen">
+          <p><strong>Imagen:</strong></p>
+          <img [src]="'data:image/jpeg;base64,' + incidencia.cb_imagen" alt="Imagen de la incidencia" />
+        </div>
       </div>
     </ion-card-content>
-    <button class="custom-button" (click)="navigateToCreateDiagnosticos(incidencia.ct_id_incidencia)">Registrar Diagnóstico</button>
+    <ion-button (click)="navigateToCreateDiagnosticos(incidencia.ct_id_incidencia)">Registrar Diagnóstico</ion-button>
   </ion-card>
 
   <ion-card>
@@ -31,7 +34,6 @@
               <th>Fecha de diagnóstico</th>
               <th>Diagnóstico</th>
               <th>Tiempo estimado de reparación</th>
-              <th>Imagen</th>
               <th>Observaciones</th>
               <th>ID Incidencia</th>
               <th>ID Usuario</th>
@@ -42,7 +44,6 @@
               <td>{{ diagnostico.cf_fecha_hora_diagnostico }}</td>
               <td>{{ diagnostico.ct_diagnostico }}</td>
               <td>{{ diagnostico.cn_tiempo_estimado_reparacion }}</td>
-              <td>{{ diagnostico.cn_id_imagen }}</td>
               <td>{{ diagnostico.ct_observaciones }}</td>
               <td>{{ diagnostico.ct_id_incidencia }}</td>
               <td>{{ diagnostico.cn_id_usuario }}</td>

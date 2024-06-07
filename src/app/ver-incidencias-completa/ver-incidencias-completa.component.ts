@@ -33,24 +33,17 @@ export class VerIncidenciasCompletaComponent implements OnInit {
 
   async loadIncidencia(ct_id_incidencia: string) {
     try {
-      // Cargar la incidencia de forma asíncrona
       const result = await this.incidenciasService.mostrar_incidencias_por_id(ct_id_incidencia);
       this.incidencias = result;
-      //console.log("Esto es loadIncidencia");
-     // console.log(this.incidencias);
-      
-      
     } catch (error) {
       console.error('Error loading incidencia', error);
     }
-  }//end of loadIncidencias
+  }
 
   async loadDiagnosticos(ct_id_incidencia: string) {
     try {
       const result = await this.diagnosticosService.mostrar_diagnosticos_por_id_incidencia(ct_id_incidencia);
-      //console.log(result);
       this.diagnosticos = result;
-     // console.log(this.diagnosticos);
     } catch (error) {
       console.error('Error loading diagnosticos', error);
     }
