@@ -94,3 +94,19 @@
 .table-responsive {
   overflow-x: auto;
 }
+
+.diagnostico-card {
+  margin-bottom: 20px;
+}
+
+.diagnostico-card ion-item {
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
+}
+
+.diagnostico-card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 10px;
+}

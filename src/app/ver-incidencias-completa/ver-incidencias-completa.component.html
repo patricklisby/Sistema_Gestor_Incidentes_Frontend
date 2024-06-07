@@ -35,29 +35,35 @@
       </ion-toolbar>
     </ion-header>
     <ion-card-content>
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Fecha de diagnóstico</th>
-              <th>Diagnóstico</th>
-              <th>Tiempo estimado de reparación</th>
-              <th>Observaciones</th>
-              <th>ID Incidencia</th>
-              <th>ID Usuario</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let diagnostico of diagnosticos">
-              <td>{{ diagnostico.cf_fecha_hora_diagnostico }}</td>
-              <td>{{ diagnostico.ct_diagnostico }}</td>
-              <td>{{ diagnostico.cn_tiempo_estimado_reparacion }}</td>
-              <td>{{ diagnostico.ct_observaciones }}</td>
-              <td>{{ diagnostico.ct_id_incidencia }}</td>
-              <td>{{ diagnostico.cn_id_usuario }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div *ngFor="let diagnostico of diagnosticos" class="diagnostico-card">
+        <ion-item>
+          <ion-label><strong>Fecha de diagnóstico:</strong></ion-label>
+          <ion-text>{{ diagnostico.cf_fecha_hora_diagnostico }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Diagnóstico:</strong></ion-label>
+          <ion-text>{{ diagnostico.ct_diagnostico }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Tiempo estimado de reparación:</strong></ion-label>
+          <ion-text>{{ diagnostico.cn_tiempo_estimado_reparacion }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Observaciones:</strong></ion-label>
+          <ion-text>{{ diagnostico.ct_observaciones }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>ID Incidencia:</strong></ion-label>
+          <ion-text>{{ diagnostico.ct_id_incidencia }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>ID Usuario:</strong></ion-label>
+          <ion-text>{{ diagnostico.cn_id_usuario }}</ion-text>
+        </ion-item>
+        <div *ngIf="diagnostico.cb_imagen">
+          <p><strong>Imagen:</strong></p>
+          <img [src]="'data:image/jpeg;base64,' + diagnostico.cb_imagen" alt="Imagen del diagnóstico" />
+        </div>
       </div>
     </ion-card-content>
   </ion-card>
