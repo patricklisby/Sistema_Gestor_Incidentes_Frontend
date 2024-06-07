@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IncidenciasService {
-
   private apiURL = 'http://127.0.0.1:3000/';
   private tokenKey = 'authToken';
-  constructor(private http: HttpClient, private alertController: AlertController) { }
+
+  constructor(private http: HttpClient) {}
 
   async mostrar_incidencias(): Promise<any> {
     try {
@@ -52,19 +51,12 @@ export class IncidenciasService {
     }
   }
 
-  async registrar_incidencia(ct_titulo_incidencia: string, ct_descripcion_incidencia: string, ct_lugar: string, cn_id_usuario_registro: number, image: File): Promise<any> {
+  async registrar_incidencia(formData: FormData): Promise<any> {
     try {
       const token = localStorage.getItem(this.tokenKey);
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
-
-      const formData = new FormData();
-      formData.append('ct_titulo_incidencia', ct_titulo_incidencia);
-      formData.append('ct_descripcion_incidencia', ct_descripcion_incidencia);
-      formData.append('ct_lugar', ct_lugar);
-      formData.append('cn_id_usuario_registro', cn_id_usuario_registro.toString());
-      formData.append('image', image);
 
       const response = await this.http.post(`${this.apiURL}registrar_incidencia`, formData, { headers }).toPromise();
       return response;

@@ -25,13 +25,13 @@ export class DiagnosticosService {
     }
   }
 
-  async mostrar_diagnosticos_por_usuario(ct_id_incidencia: string): Promise<any> {
+  async mostrar_diagnosticos_por_usuario(cn_id_usuario: string): Promise<any> {
     try {
       const token = localStorage.getItem(this.tokenKey);
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
-      const response = await this.http.get(`${this.apiURL}mostrar_diagnosticos_por_usuario/${ct_id_incidencia}`, { headers }).toPromise();
+      const response = await this.http.get(`${this.apiURL}mostrar_diagnosticos_por_usuario/${cn_id_usuario}`, { headers }).toPromise();
       return response;
     } catch (error) {
       console.error('Error en mostrar_diagnosticos_por_usuario:', error);
@@ -39,20 +39,12 @@ export class DiagnosticosService {
     }
   }
 
-  async registrar_diagnosticos(ct_diagnostico: string, cn_tiempo_estimado_reparacion: string, ct_observaciones: string, ct_id_incidencia: string, cn_id_usuario: number, image: File): Promise<any> {
+  async registrar_diagnosticos(formData: FormData): Promise<any> {
     try {
       const token = localStorage.getItem(this.tokenKey);
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
-
-      const formData = new FormData();
-      formData.append('ct_diagnostico', ct_diagnostico);
-      formData.append('cn_tiempo_estimado_reparacion', cn_tiempo_estimado_reparacion);
-      formData.append('ct_observaciones', ct_observaciones);
-      formData.append('ct_id_incidencia', ct_id_incidencia);
-      formData.append('cn_id_usuario', cn_id_usuario.toString());
-      formData.append('image', image);
 
       const response = await this.http.post(`${this.apiURL}registrar_diagnosticos`, formData, { headers }).toPromise();
       return response;

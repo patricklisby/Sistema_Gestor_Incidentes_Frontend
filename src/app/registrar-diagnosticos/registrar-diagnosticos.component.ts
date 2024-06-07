@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DiagnosticosService } from '../services/diagnosticos.service';
 import { ToastController } from '@ionic/angular';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-registrar-diagnosticos',
@@ -12,7 +13,7 @@ import { ToastController } from '@ionic/angular';
 export class RegistrarDiagnosticosComponent implements OnInit {
   diagnosticoForm: FormGroup;
   ct_id_incidencia: string;
-  selectedFile: File | null = null;
+  photo: string | null = null;
 
   constructor(
     private fb: FormBuilder, 
@@ -27,29 +28,42 @@ export class RegistrarDiagnosticosComponent implements OnInit {
       cn_tiempo_estimado_reparacion: ['', Validators.required],
       ct_observaciones: ['', Validators.required],
       ct_id_incidencia: ['', Validators.required],
-      cn_id_usuario: ['1', Validators.required],
-      image: [null, Validators.required]
+      cn_id_usuario: ['1', Validators.required]
     });
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.ct_id_incidencia = params.get('ct_id_incidencia') ?? '';
-      this.diagnosticoForm.patchValue({ct_id_incidencia: this.ct_id_incidencia});
+      this.diagnosticoForm.patchValue({ ct_id_incidencia: this.ct_id_incidencia });
     });
   }
 
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-    this.diagnosticoForm.patchValue({ image: this.selectedFile });
+  async takePhoto() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl
+    });
+
+    this.photo = image.dataUrl ?? null;
   }
 
   async onSubmit() {
     if (this.diagnosticoForm.valid) {
       const { ct_diagnostico, cn_tiempo_estimado_reparacion, ct_observaciones, ct_id_incidencia, cn_id_usuario } = this.diagnosticoForm.value;
-      if (this.selectedFile) {
+
+      if (this.photo) {
+        const formData = new FormData();
+        formData.append('ct_diagnostico', ct_diagnostico);
+        formData.append('cn_tiempo_estimado_reparacion', cn_tiempo_estimado_reparacion);
+        formData.append('ct_observaciones', ct_observaciones);
+        formData.append('ct_id_incidencia', ct_id_incidencia);
+        formData.append('cn_id_usuario', cn_id_usuario.toString());
+        formData.append('image', this.dataURLtoBlob(this.photo));
+
         try {
-          await this.diagnosticosService.registrar_diagnosticos(ct_diagnostico, cn_tiempo_estimado_reparacion, ct_observaciones, ct_id_incidencia, cn_id_usuario, this.selectedFile);
+          await this.diagnosticosService.registrar_diagnosticos(formData);
           const successToast = await this.toastController.create({
             message: 'Diagnóstico registrado con éxito',
             duration: 1500,
@@ -69,9 +83,8 @@ export class RegistrarDiagnosticosComponent implements OnInit {
           await errorToast.present();
         }
       } else {
-        console.log('No se ha seleccionado ningún archivo');
         const noFileToast = await this.toastController.create({
-          message: 'Por favor, seleccione un archivo',
+          message: 'Por favor, tome una foto',
           duration: 1500,
           position: 'top',
           color: 'warning'
@@ -79,7 +92,6 @@ export class RegistrarDiagnosticosComponent implements OnInit {
         await noFileToast.present();
       }
     } else {
-      console.log('Formulario no válido');
       const invalidFormToast = await this.toastController.create({
         message: 'Por favor, complete todos los campos requeridos',
         duration: 1500,
@@ -92,5 +104,21 @@ export class RegistrarDiagnosticosComponent implements OnInit {
 
   navigateToIncidencias(ct_id_incidencia: string) {
     this.router.navigate(['/ver_incidencias_completa', ct_id_incidencia]);
+  }
+
+  private dataURLtoBlob(dataurl: string) {
+    const arr = dataurl.split(',');
+    const mimeMatch = arr[0].match(/:(.*?);/);
+    if (!mimeMatch) {
+      throw new Error('Invalid data URL');
+    }
+    const mime = mimeMatch[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
   }
 }

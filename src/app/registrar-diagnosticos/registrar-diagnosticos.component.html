@@ -1,7 +1,12 @@
-<ion-card>
-  <ion-card-header>
-    <ion-card-title>Registrar Diagnóstico</ion-card-title>
-  </ion-card-header>
+<ion-card class="responsive-card">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="centered-title">Registrar Diagnóstico</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <ion-card-content>
     <p>ID de Incidencia: {{ ct_id_incidencia }}</p>
     <ion-button shape="round" (click)="navigateToIncidencias(ct_id_incidencia)">Volver</ion-button>
@@ -31,9 +36,10 @@
         <ion-input type="number" formControlName="cn_id_usuario" id="cn_id_usuario" [value]="1"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <input type="file" (change)="onFileSelected($event)">
-      </ion-item>
+      <ion-button expand="block" type="button" (click)="takePhoto()">Tomar Foto</ion-button>
+      <div *ngIf="photo" class="photo-container">
+        <img [src]="photo" alt="Foto tomada" class="responsive-img" />
+      </div>
 
       <ion-button expand="block" type="submit" [disabled]="!diagnosticoForm.valid">Registrar</ion-button>
     </form>

@@ -1,0 +1,55 @@
+.responsive-card {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .photo-container {
+    text-align: center;
+    margin-top: 16px;
+  }
+  
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .responsive-card {
+      padding: 16px;
+    }
+  
+    ion-item {
+      --padding-start: 0;
+    }
+  
+    ion-label {
+      font-size: 16px;
+    }
+  
+    ion-input,
+    ion-textarea {
+      font-size: 14px;
+    }
+  
+    ion-button {
+      margin-top: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    ion-label {
+      font-size: 14px;
+    }
+  
+    ion-input,
+    ion-textarea {
+      font-size: 12px;
+    }
+  
+    ion-button {
+      font-size: 14px;
+      margin-top: 12px;
+    }
+  }
+  

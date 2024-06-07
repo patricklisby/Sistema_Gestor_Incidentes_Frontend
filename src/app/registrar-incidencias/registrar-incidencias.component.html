@@ -1,10 +1,10 @@
-<ion-card>
+<ion-card class="responsive-card">
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title class="centered-title">Registrar Incidencias</ion-title>
+      <ion-title class="centered-title">Registrar Incidencia</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-card-content>
@@ -30,9 +30,10 @@
         <ion-input type="text" formControlName="cn_id_usuario_registro" id="cn_id_usuario_registro"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <input type="file" (change)="onFileSelected($event)">
-      </ion-item>
+      <ion-button expand="block" type="button" (click)="takePhoto()">Tomar Foto</ion-button>
+      <div *ngIf="photo">
+        <img [src]="photo" alt="Foto tomada" />
+      </div>
 
       <ion-button expand="block" type="submit" [disabled]="!incidenciaForm.valid">Registrar</ion-button>
     </form>
