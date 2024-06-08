@@ -11,14 +11,14 @@
   <ion-button shape="round" (click)="navigateToIncidencias()">Volver</ion-button>
   <ion-card *ngFor="let incidencia of incidencias" class="incidencia-card">
     <ion-card-header>
-      <ion-card-title>{{ incidencia.ct_titulo_incidencia }}</ion-card-title>
+      <ion-card-title>Título: {{ incidencia.ct_titulo_incidencia }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <div class="incidencia-details">
         <p><strong>Descripción:</strong> {{ incidencia.ct_descripcion_incidencia }}</p>
         <p><strong>Lugar:</strong> {{ incidencia.ct_lugar }}</p>
-        <p><strong>Estado:</strong> {{ incidencia.cn_id_estado }}</p>
-        <p><strong>Usuario Registro:</strong> {{ incidencia.cn_id_usuario_registro }}</p>
+        <p><strong>Estado:</strong> {{ incidencia.ct_descripcion_estado}}</p>
+        <p><strong>Usuario Registro:</strong> {{ incidencia.ct_nombre_completo }}</p>
         <div *ngIf="incidencia.cb_imagen">
           <p><strong>Imagen:</strong></p>
           <img [src]="'data:image/jpeg;base64,' + incidencia.cb_imagen" alt="Imagen de la incidencia" />
@@ -38,7 +38,7 @@
       <div *ngFor="let diagnostico of diagnosticos" class="diagnostico-card">
         <ion-item>
           <ion-label><strong>Fecha de diagnóstico:</strong></ion-label>
-          <ion-text>{{ diagnostico.cf_fecha_hora_diagnostico }}</ion-text>
+          <ion-text>{{ diagnostico.fecha_formateada }}</ion-text>
         </ion-item>
         <ion-item>
           <ion-label><strong>Diagnóstico:</strong></ion-label>
@@ -52,14 +52,6 @@
           <ion-label><strong>Observaciones:</strong></ion-label>
           <ion-text>{{ diagnostico.ct_observaciones }}</ion-text>
         </ion-item>
-        <ion-item>
-          <ion-label><strong>ID Incidencia:</strong></ion-label>
-          <ion-text>{{ diagnostico.ct_id_incidencia }}</ion-text>
-        </ion-item>
-        <ion-item>
-          <ion-label><strong>ID Usuario:</strong></ion-label>
-          <ion-text>{{ diagnostico.cn_id_usuario }}</ion-text>
-        </ion-item>
         <div *ngIf="diagnostico.cb_imagen">
           <p><strong>Imagen:</strong></p>
           <img [src]="'data:image/jpeg;base64,' + diagnostico.cb_imagen" alt="Imagen del diagnóstico" />
@@ -67,4 +59,5 @@
       </div>
     </ion-card-content>
   </ion-card>
+  
 </ion-content>

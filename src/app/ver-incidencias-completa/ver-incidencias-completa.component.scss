@@ -1,57 +1,42 @@
 .incidencias-content {
-    padding: 20px;
-  }
-  
-  .incidencia-item {
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .incidencia-item ion-label {
-    display: block;
-  }
-  
-  .incidencia-item h2 {
-    margin-bottom: 5px;
-    color: #007bff;
-  }
-  
-  .incidencia-item p {
-    margin: 5px 0;
-  }
-  
-  /* En tu archivo .scss correspondiente, por ejemplo, styles.scss */
+  padding: 20px;
+}
+
+.incidencia-item {
+  border-bottom: 1px solid #ccc;
+}
+
+.incidencia-item ion-label {
+  display: block;
+}
+
+.incidencia-item h2 {
+  margin-bottom: 5px;
+  color: #007bff;
+}
+
+.incidencia-item p {
+  margin: 5px 0;
+}
 
 /* Estilo personalizado para el botón */
 .custom-button {
-  /* Cambia el color de fondo del botón */
   background-color: #007bff;
-  /* Cambia el color del texto del botón */
   color: #fff;
-  /* Agrega un borde al botón */
   border: 1px solid #007bff;
-  /* Ajusta el radio de la esquina del botón */
   border-radius: 5px;
-  /* Agrega un poco de relleno al botón */
   padding: 10px 20px;
-  /* Añade un efecto de sombra al botón */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Define la transición cuando se cambia el estado del botón */
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-/* Estilo personalizado para el botón cuando se pasa el mouse sobre él */
 .custom-button:hover {
-  /* Cambia el color de fondo del botón al pasar el mouse */
   background-color: #0056b3;
-  /* Cambia el color del texto del botón al pasar el mouse */
   color: #fff;
 }
 
-/* Estilo personalizado para el botón cuando está activo */
 .custom-button:active {
-  /* Cambia el color de fondo del botón cuando está activo */
   background-color: #003366;
-  /* Cambia el color del texto del botón cuando está activo */
   color: #fff;
 }
 
@@ -75,7 +60,6 @@
   text-align: left;
 }
 
-
 /* Estilos CSS para tabla responsive */
 .table {
   width: 100%;
@@ -88,8 +72,6 @@
   text-align: left;
 }
 
-
-
 /* Estilos para hacer la tabla responsive */
 .table-responsive {
   overflow-x: auto;
@@ -97,11 +79,15 @@
 
 .diagnostico-card {
   margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
 .diagnostico-card ion-item {
   --inner-padding-end: 0;
   --inner-padding-start: 0;
+  margin-bottom: 10px;
 }
 
 .diagnostico-card img {
