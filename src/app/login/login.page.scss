@@ -1,17 +1,21 @@
-.container {
+ion-content {
+  --padding-top: 0;
+  --padding-bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  padding: 20px;
-  background: linear-gradient(135deg, #ececec, #ffffff);
 }
 
-.content {
-  background: rgb(23, 36, 152);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.login-card {
   width: 100%;
   max-width: 400px;
   text-align: center;
@@ -32,17 +36,13 @@ ion-item {
   margin-bottom: 15px;
 }
 
-.custom-button {
-  --background: white; /* Color de fondo del botón */
-  --background-activated: #f0f0f0; /* Color de fondo cuando se presiona el botón */
-  --background-focused: #f0f0f0; /* Color de fondo cuando el botón está enfocado */
-  --background-hover: #f0f0f0; /* Color de fondo cuando se pasa el ratón por encima */
-  --color: black; /* Color del texto del botón */
-  border: 1px solid #3880ff; /* Borde del botón */
-}
-
-.custom-button:hover {
-  --background: #f0f0f0; /* Color de fondo al pasar el ratón */
+ion-button {
+  --background: #007bff;
+  --background-activated: #0056b3;
+  --background-focused: #0056b3;
+  --background-hover: #0056b3;
+  --color: white;
+  margin-top: 20px;
 }
 
 ion-label {

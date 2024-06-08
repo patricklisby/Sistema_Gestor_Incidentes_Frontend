@@ -1,53 +1,72 @@
+ion-content {
+  --padding-top: 20px;
+}
+
 form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-  
-    input[type="text"],
-    input[type="number"],
-    textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-      box-sizing: border-box;
-  
-      &:focus {
-        border-color: #007bff;
-        outline: none;
-      }
-    }
-  
-    button[type="submit"] {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-  
-      &:hover {
-        background-color: #0056b3;
-      }
-  
-      &:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-      }
-    }
-  }
-  
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.centered-title {
+  text-align: center;
+  width: 100%;
+}
+
+ion-button {
+  margin-top: 20px;
+}
+
+ion-item {
+  --inner-padding-start: 0px;
+  --inner-padding-end: 0px;
+  margin-bottom: 20px;
+}
+
+ion-input,
+ion-textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+ion-input:focus,
+ion-textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+ion-button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+ion-button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+ion-button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.photo-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}

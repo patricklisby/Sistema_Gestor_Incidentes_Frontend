@@ -5,36 +5,37 @@
 </ion-header>
 
 <ion-content class="ion-padding" fullscreen>
-  <div class="container">
-    <div class="content">
-      <!-- Imagen antes del título -->
-      <div class="intro-image">
-        <img src="assets/img/ucr_logo.png" alt="Imagen descriptiva">
+  <div class="login-container">
+    <ion-card class="login-card">
+      <ion-card-content>
+        <!-- Imagen antes del título -->
+        <div class="intro-image">
+          <img src="assets/img/ucr_logo.png" alt="Imagen descriptiva">
+        </div>
+        <!-- Texto descriptivo antes del formulario -->
+        <div class="intro-text">
+          <p>Sistema Gestor de Incidentes</p>
+        </div>
+        <form (ngSubmit)="login($event)">
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="person-circle-outline"></ion-icon>
+              Correo electrónico
+            </ion-label>
+            <ion-input type="email" [(ngModel)]="ct_correo_institucional" name="ct_correo_institucional" required></ion-input>
+          </ion-item>
 
-      </div>
-      <!-- Texto descriptivo antes del formulario -->
-      <div class="intro-text">
-        <p>Sistema Gestor de Incidentes</p>
-      </div>
-      <form (ngSubmit)="login($event)">
-        <ion-item>
-          <ion-label position="floating">
-            <ion-icon name="person-circle-outline"></ion-icon>
-            Correo electrónico
-          </ion-label>
-          <ion-input type="email" [(ngModel)]="ct_correo_institucional" name="ct_correo_institucional" required></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+              Contraseña
+            </ion-label>
+            <ion-input type="password" [(ngModel)]="ct_contrasena" name="ct_contrasena" required></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">
-            <ion-icon name="lock-closed-outline"></ion-icon>
-            Contraseña
-          </ion-label>
-          <ion-input type="password" [(ngModel)]="ct_contrasena" name="ct_contrasena" required></ion-input>
-        </ion-item>
-
-        <ion-button expand="block" type="submit">Iniciar sesión</ion-button>
-      </form>
-    </div>
+          <ion-button expand="block" type="submit">Iniciar sesión</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
