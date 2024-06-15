@@ -14,7 +14,7 @@ import { AuthService } from '../services/auth.service';
 export class RegistrarDiagnosticosComponent implements OnInit {
   diagnosticoForm: FormGroup;
   ct_id_incidencia: string;
-  photo: string | null = null;
+  photos: string[] = [];
   userId: number | null = null;
 
   constructor(
@@ -57,21 +57,26 @@ export class RegistrarDiagnosticosComponent implements OnInit {
       resultType: CameraResultType.DataUrl
     });
 
-    this.photo = image.dataUrl ?? null;
+    if (image.dataUrl) {
+      this.photos.push(image.dataUrl);
+    }
   }
 
   async onSubmit() {
     if (this.diagnosticoForm.valid) {
       const { ct_diagnostico, cn_tiempo_estimado_reparacion, ct_observaciones, ct_id_incidencia, cn_id_usuario } = this.diagnosticoForm.value;
 
-      if (this.photo) {
+      if (this.photos.length > 0) {
         const formData = new FormData();
         formData.append('ct_diagnostico', ct_diagnostico);
         formData.append('cn_tiempo_estimado_reparacion', cn_tiempo_estimado_reparacion);
         formData.append('ct_observaciones', ct_observaciones);
         formData.append('ct_id_incidencia', ct_id_incidencia);
         formData.append('cn_id_usuario', cn_id_usuario.toString());
-        formData.append('image', this.dataURLtoBlob(this.photo));
+        
+        this.photos.forEach((photo, index) => {
+          formData.append('images', this.dataURLtoBlob(photo));
+        });
 
         try {
           await this.diagnosticosService.registrar_diagnosticos(formData);
@@ -95,7 +100,7 @@ export class RegistrarDiagnosticosComponent implements OnInit {
         }
       } else {
         const noFileToast = await this.toastController.create({
-          message: 'Por favor, tome una foto',
+          message: 'Por favor, tome al menos una foto',
           duration: 1500,
           position: 'top',
           color: 'warning'

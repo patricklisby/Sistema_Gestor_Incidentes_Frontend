@@ -5,6 +5,7 @@ import { VerIncidenciasCompletaComponent } from './ver-incidencias-completa/ver-
 import { RegistrarIncidenciasComponent } from './registrar-incidencias/registrar-incidencias.component';
 import { RegistrarDiagnosticosComponent } from './registrar-diagnosticos/registrar-diagnosticos.component';
 import { VerDiagnosticosComponent } from './ver-diagnosticos/ver-diagnosticos.component';
+import { AsignarIncidenciasComponent } from './asignar-incidencias/asignar-incidencias.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
     path: 'ver_diagnosticos/:ct_id_incidencia',
     component: VerDiagnosticosComponent // Corrige este componente
   },
+  {
+    path: 'asignar_incidencias/:ct_id_incidencia',
+    component: VerDiagnosticosComponent // Corrige este componente
+  },
+
 ];
 
 @NgModule({

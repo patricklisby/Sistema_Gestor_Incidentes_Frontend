@@ -25,10 +25,11 @@
       <ion-input type="text" formControlName="ct_lugar" id="ct_lugar"></ion-input>
     </ion-item>
 
-
     <ion-button expand="block" type="button" (click)="takePhoto()">Tomar Foto</ion-button>
-    <div *ngIf="photo" class="photo-container">
-      <img [src]="photo" alt="Foto tomada" class="responsive-img" />
+    <div *ngIf="photos.length > 0" class="photo-container">
+      <div *ngFor="let photo of photos">
+        <img [src]="photo" alt="Foto tomada" class="responsive-img" />
+      </div>
     </div>
 
     <ion-button expand="block" type="submit" [disabled]="!incidenciaForm.valid">Registrar</ion-button>

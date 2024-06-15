@@ -13,7 +13,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class RegistrarIncidenciasComponent implements OnInit {
   incidenciaForm: FormGroup;
-  photo: string | null = null;
+  photos: string[] = [];
   userId: number | null = null;
 
   constructor(
@@ -48,20 +48,25 @@ export class RegistrarIncidenciasComponent implements OnInit {
       resultType: CameraResultType.DataUrl
     });
 
-    this.photo = image.dataUrl ?? null;
+    if (image.dataUrl) {
+      this.photos.push(image.dataUrl);
+    }
   }
 
   async onSubmit() {
     if (this.incidenciaForm.valid) {
       const { ct_titulo_incidencia, ct_descripcion_incidencia, ct_lugar, cn_id_usuario_registro } = this.incidenciaForm.value;
 
-      if (this.photo) {
+      if (this.photos.length > 0) {
         const formData = new FormData();
         formData.append('ct_titulo_incidencia', ct_titulo_incidencia);
         formData.append('ct_descripcion_incidencia', ct_descripcion_incidencia);
         formData.append('ct_lugar', ct_lugar);
         formData.append('cn_id_usuario_registro', cn_id_usuario_registro.toString());
-        formData.append('image', this.dataURLtoBlob(this.photo));
+        
+        this.photos.forEach((photo, index) => {
+          formData.append('images', this.dataURLtoBlob(photo)); // Asegúrate de usar 'images'
+        });
 
         try {
           await this.incidenciasService.registrar_incidencia(formData);
@@ -85,7 +90,7 @@ export class RegistrarIncidenciasComponent implements OnInit {
         }
       } else {
         const noFileToast = await this.toastController.create({
-          message: 'Por favor, tome una foto',
+          message: 'Por favor, tome al menos una foto',
           duration: 1500,
           position: 'top',
           color: 'warning'

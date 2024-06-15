@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { IncidenciasService } from '../services/incidencias.service';
 import { DiagnosticosService } from '../services/diagnosticos.service';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { AsignarIncidenciasComponent } from '../asignar-incidencias/asignar-incidencias.component';
 
 @Component({
   selector: 'app-ver-incidencias-completa',
@@ -11,14 +13,16 @@ import { Router } from '@angular/router';
 })
 export class VerIncidenciasCompletaComponent implements OnInit {
 
-  incidencias: any[] = [];
+  incidencia: any = {};
+  imagenes: string[] = [];
   diagnosticos: any[] = [];
 
   constructor(
     private incidenciasService: IncidenciasService,
     private diagnosticosService: DiagnosticosService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -34,7 +38,8 @@ export class VerIncidenciasCompletaComponent implements OnInit {
   async loadIncidencia(ct_id_incidencia: string) {
     try {
       const result = await this.incidenciasService.mostrar_incidencias_por_id(ct_id_incidencia);
-      this.incidencias = result;
+      this.incidencia = result;
+      this.imagenes = result.imagenes;
     } catch (error) {
       console.error('Error loading incidencia', error);
     }
@@ -49,11 +54,30 @@ export class VerIncidenciasCompletaComponent implements OnInit {
     }
   }
 
-  navigateToIncidencias() {
+  navegar_incidencias() {
     this.router.navigate(['/ver_incidencias']);
   }
 
-  navigateToCreateDiagnosticos(ct_id_incidencia: string) {
+  navegar_crear_diagnosticos(ct_id_incidencia: string) {
     this.router.navigate(['/registrar_diagnosticos', ct_id_incidencia]);
+  }
+
+  async navegar_asingacion_incidencias(ct_id_incidencia: string) {
+    const modal = await this.modalController.create({
+      component: AsignarIncidenciasComponent,
+      componentProps: {
+        ct_id_incidencia: ct_id_incidencia
+      }
+    });
+
+    modal.onDidDismiss().then((data) => {
+      const tecnicosSeleccionados = data.data;
+      if (tecnicosSeleccionados) {
+        console.log('Técnicos seleccionados:', tecnicosSeleccionados);
+        // Aquí puedes manejar los técnicos seleccionados (por ejemplo, asignarlos a la incidencia)
+      }
+    });
+
+    return await modal.present();
   }
 }

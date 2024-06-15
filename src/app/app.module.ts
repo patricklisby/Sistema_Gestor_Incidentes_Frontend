@@ -14,6 +14,8 @@ import { VerIncidenciasCompletaComponent } from './ver-incidencias-completa/ver-
 import { RegistrarIncidenciasComponent } from './registrar-incidencias/registrar-incidencias.component';
 import { VerDiagnosticosComponent } from './ver-diagnosticos/ver-diagnosticos.component';
 import { RegistrarDiagnosticosComponent } from './registrar-diagnosticos/registrar-diagnosticos.component';
+import { AsignarIncidenciasComponent } from './asignar-incidencias/asignar-incidencias.component';
+
 
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 
@@ -26,6 +28,7 @@ import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
     VerDiagnosticosComponent,
     RegistrarDiagnosticosComponent,
     SidemenuComponent,
+    AsignarIncidenciasComponent
   ],
   imports:[
     BrowserModule,

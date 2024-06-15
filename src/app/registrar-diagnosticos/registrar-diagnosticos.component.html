@@ -24,10 +24,11 @@
       <ion-textarea formControlName="ct_observaciones" id="ct_observaciones"></ion-textarea>
     </ion-item>
 
-
     <ion-button expand="block" type="button" (click)="takePhoto()">Tomar Foto</ion-button>
-    <div *ngIf="photo" class="photo-container">
-      <img [src]="photo" alt="Foto tomada" class="responsive-img" />
+    <div *ngIf="photos.length > 0" class="photo-container">
+      <div *ngFor="let photo of photos">
+        <img [src]="photo" alt="Foto tomada" class="responsive-img" />
+      </div>
     </div>
 
     <ion-button expand="block" type="submit" [disabled]="!diagnosticoForm.valid">Registrar</ion-button>
