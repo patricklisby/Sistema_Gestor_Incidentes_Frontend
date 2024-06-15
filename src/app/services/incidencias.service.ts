@@ -65,4 +65,21 @@ export class IncidenciasService {
       throw error;
     }
   }
-}
+
+  async asignarIncidencias(ct_id_incidencia: string, cn_id_usuario: string): Promise<any> {
+    try {
+      const token = localStorage.getItem(this.tokenKey);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      });
+      const body = { ct_id_incidencia, cn_id_usuario };
+      const response = await this.http.post(`${this.apiURL}asignar_incidentes`, body, { headers }).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al asignar la incidencia:', error);
+      throw error;
+    }
+  }
+
+}//End of incidencias

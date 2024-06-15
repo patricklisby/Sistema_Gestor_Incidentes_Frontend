@@ -8,11 +8,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let tecnico of tecnicos">
-      <ion-label>{{ tecnico.nombre }}</ion-label>
-      <ion-checkbox slot="start" [(ngModel)]="tecnico.seleccionado"></ion-checkbox>
-    </ion-item>
-  </ion-list>
-  <ion-button expand="block" (click)="asignarTecnicos()">Asignar</ion-button>
+  <form (ngSubmit)="asignarTecnicos()">
+    <ion-list>
+      <ion-item *ngFor="let tecnico of tecnicos">
+        <ion-label>{{ tecnico.ct_nombre_completo }}</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="tecnico.seleccionado" name="tecnico-{{ tecnico.cn_id_usuario }}"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" type="submit">Asignar</ion-button>
+  </form>
 </ion-content>
