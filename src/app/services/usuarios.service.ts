@@ -22,4 +22,38 @@ export class UsuariosService {
       console.error('Error al obtener técnicos:', error);
     }
   }
+
+  async registrar_usuarios(usuario: any): Promise<any> {
+    try {
+      const response = await this.http.post(`${this.apiURL}registrar`, usuario).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+      throw error;
+    }
+  }
+
+  async obtener_roles(): Promise<any> {
+    try {
+      const response = await this.http.get(`${this.apiURL}roles`).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al obtener roles:', error);
+      throw error;
+    }
+  }
+
+  async obtener_usuarios(): Promise<any> {
+    try {
+      const response = await this.http.get(`${this.apiURL}mostrar_usuarios`).toPromise();
+      console.log(response);
+      
+      return response;
+    } catch (error) {
+      console.error('Error al obtener usuarios:', error);
+      throw error;
+    }
+  }
+
+  
 }

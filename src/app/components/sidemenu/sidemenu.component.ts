@@ -40,7 +40,7 @@ export class SidemenuComponent implements OnInit {
   }
 
   navegar_gestionar_sistema() {
-    this.router.navigate(['/folder/apps']).then(() => {
+    this.router.navigate(['gestionar_usuarios']).then(() => {
       this.menu.close();
     });
   }

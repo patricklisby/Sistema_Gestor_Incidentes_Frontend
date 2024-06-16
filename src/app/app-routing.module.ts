@@ -6,6 +6,9 @@ import { RegistrarIncidenciasComponent } from './registrar-incidencias/registrar
 import { RegistrarDiagnosticosComponent } from './registrar-diagnosticos/registrar-diagnosticos.component';
 import { VerDiagnosticosComponent } from './ver-diagnosticos/ver-diagnosticos.component';
 import { AsignarIncidenciasComponent } from './asignar-incidencias/asignar-incidencias.component';
+import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
+import { GestionarUsuariosComponent } from './gestionar-usuarios/gestionar-usuarios.component';
+import { EditarUsuariosComponent } from './editar-usuarios/editar-usuarios.component';
 
 const routes: Routes = [
   {
@@ -35,11 +38,23 @@ const routes: Routes = [
   },
   {
     path: 'ver_diagnosticos/:ct_id_incidencia',
-    component: VerDiagnosticosComponent // Corrige este componente
+    component: VerDiagnosticosComponent
   },
   {
     path: 'asignar_incidencias/:ct_id_incidencia',
-    component: VerDiagnosticosComponent // Corrige este componente
+    component: AsignarIncidenciasComponent
+  },
+  {
+    path: 'gestionar_usuarios',
+    component: GestionarUsuariosComponent
+  },
+  {
+    path: 'crear_usuarios',
+    component: CrearUsuariosComponent
+  },
+  {
+    path: 'editar_usuarios/:cn_id_usuario',
+    component: EditarUsuariosComponent
   },
 
 ];

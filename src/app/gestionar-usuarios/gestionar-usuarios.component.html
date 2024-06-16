@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="centered-title">Gestionar Sistema</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="8">
+        <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="buscarUsuarios($event)"></ion-searchbar>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button expand="full" color="primary" (click)="agregarUsuario()">Agregar Usuario</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row class="header-row">
+      <ion-col size="6" class="header-col">Nombre Completo</ion-col>
+      <ion-col size="4" class="header-col">Descripción Puesto</ion-col>
+      <ion-col size="2" class="header-col">Acciones</ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let usuario of usuariosFiltrados">
+      <ion-col size="6">{{ usuario.ct_nombre_completo }}</ion-col>
+      <ion-col size="4">{{ usuario.ct_descripcion_puesto }}</ion-col>
+      <ion-col size="2">
+        <ion-button size="small" fill="clear" color="medium" (click)="editarUsuario(usuario.cn_id_usuario)">
+          <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+        </ion-button>
+        
+      </ion-col>
+      <!-- Campos ocultos -->
+      <ion-col hidden>{{ usuario.cn_id_usuario }}</ion-col>
+      <ion-col hidden>{{ usuario.ct_cedula }}</ion-col>
+      <ion-col hidden>{{ usuario.ct_celular }}</ion-col>
+      <ion-col hidden>{{ usuario.ct_id_departamento }}</ion-col>
+      <ion-col hidden>{{ usuario.ct_correo_institucional }}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

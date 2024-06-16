@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="centered-title">Registrar Usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Nombre Completo</ion-label>
+      <ion-input formControlName="ct_nombre_completo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Cédula</ion-label>
+      <ion-input formControlName="ct_cedula"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripción Puesto</ion-label>
+      <ion-input formControlName="ct_descripcion_puesto"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Celular</ion-label>
+      <ion-input formControlName="ct_celular"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">ID Departamento</ion-label>
+      <ion-input formControlName="ct_id_departamento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Correo Institucional</ion-label>
+      <ion-input formControlName="ct_correo_institucional"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" formControlName="ct_contrasena"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Roles</ion-label>
+      <ion-select formControlName="cn_id_rol" multiple="true">
+        <ion-select-option *ngFor="let rol of roles" [value]="rol.cn_id_rol">{{ rol.ct_nombre_rol }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="full" type="submit">Registrar</ion-button>
+  </form>
+</ion-content>

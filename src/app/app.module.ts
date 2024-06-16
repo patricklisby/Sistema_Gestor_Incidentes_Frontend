@@ -15,6 +15,9 @@ import { RegistrarIncidenciasComponent } from './registrar-incidencias/registrar
 import { VerDiagnosticosComponent } from './ver-diagnosticos/ver-diagnosticos.component';
 import { RegistrarDiagnosticosComponent } from './registrar-diagnosticos/registrar-diagnosticos.component';
 import { AsignarIncidenciasComponent } from './asignar-incidencias/asignar-incidencias.component';
+import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
+import { GestionarUsuariosComponent } from './gestionar-usuarios/gestionar-usuarios.component';
+import { EditarUsuariosComponent } from './editar-usuarios/editar-usuarios.component';
 
 
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
@@ -28,7 +31,10 @@ import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
     VerDiagnosticosComponent,
     RegistrarDiagnosticosComponent,
     SidemenuComponent,
-    AsignarIncidenciasComponent
+    AsignarIncidenciasComponent,
+    CrearUsuariosComponent,
+    GestionarUsuariosComponent,
+    EditarUsuariosComponent
   ],
   imports:[
     BrowserModule,
