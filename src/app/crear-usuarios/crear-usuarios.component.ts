@@ -8,10 +8,11 @@ import { NavController } from '@ionic/angular';
   templateUrl: './crear-usuarios.component.html',
   styleUrls: ['./crear-usuarios.component.scss'],
 })
-export class CrearUsuariosComponent  implements OnInit {
+export class CrearUsuariosComponent implements OnInit {
 
   usuarioForm: FormGroup;
   roles: any[] = [];
+  departamentos: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -32,17 +33,26 @@ export class CrearUsuariosComponent  implements OnInit {
 
   ngOnInit() {
     this.cargarRoles();
+    this.cargarDepartamentos();
   }
 
   async cargarRoles() {
     this.roles = await this.usuariosService.obtener_roles();
+    console.log('Roles loaded:', this.roles);  // Check loaded roles
   }
+  
+
+  async cargarDepartamentos() {
+    this.departamentos = await this.usuariosService.obtener_departamentos();
+    console.log('Departamentos loaded:', this.departamentos);  // Check loaded departments
+  }
+  
 
   async onSubmit() {
     if (this.usuarioForm.valid) {
       try {
         await this.usuariosService.registrar_usuarios(this.usuarioForm.value);
-        this.navCtrl.navigateRoot('/');
+        this.navCtrl.navigateRoot('/gestionar_usuarios');
       } catch (error) {
         console.error('Error al registrar usuario:', error);
       }

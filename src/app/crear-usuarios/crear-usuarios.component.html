@@ -26,8 +26,12 @@
       <ion-input formControlName="ct_celular"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">ID Departamento</ion-label>
-      <ion-input formControlName="ct_id_departamento"></ion-input>
+      <ion-label position="floating">Departamento</ion-label>
+      <ion-select formControlName="ct_id_departamento">
+        <ion-select-option *ngFor="let departamento of departamentos" [value]="departamento.ct_id_departamento">
+        {{ departamento.ct_descripcion_departamento }}
+        </ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Correo Institucional</ion-label>
@@ -39,8 +43,8 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Roles</ion-label>
-      <ion-select formControlName="cn_id_rol" multiple="true">
-        <ion-select-option *ngFor="let rol of roles" [value]="rol.cn_id_rol">{{ rol.ct_nombre_rol }}</ion-select-option>
+      <ion-select formControlName="cn_id_rol" multiple="true" cancelText="Cancelar" okText="OK">
+        <ion-select-option *ngFor="let rol of roles" [value]="rol.cn_id_rol">{{ rol.ct_descripcion_rol }}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-button expand="full" type="submit">Registrar</ion-button>
