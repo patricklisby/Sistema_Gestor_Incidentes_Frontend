@@ -53,6 +53,14 @@ export class VerIncidenciasCompletaComponent implements OnInit {
       console.error('Error loading diagnosticos', error);
     }
   }
+  async navegar_camibar_estado_incidencias(ct_id_incidencia: string) {
+    const modal = await this.modalController.create({
+      component: AsignarIncidenciasComponent,
+      componentProps: {
+        ct_id_incidencia: ct_id_incidencia
+      }
+    });
+  }
 
   navegar_incidencias() {
     this.router.navigate(['/ver_incidencias']);

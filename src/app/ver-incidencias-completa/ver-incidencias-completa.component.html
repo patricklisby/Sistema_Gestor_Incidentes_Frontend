@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content class="incidencias-content">
-  <ion-button shape="round" (click)="navegar_incidencias()">Volver</ion-button>
+  <ion-button class="custom-button" shape="round" (click)="navegar_incidencias()">Volver</ion-button>
   <ion-card *ngIf="incidencia" class="incidencia-card">
     <ion-card-header>
       <ion-card-title>Título: {{ incidencia.ct_titulo_incidencia }}</ion-card-title>
@@ -27,8 +27,9 @@
         </div>
       </div>
     </ion-card-content>
-    <ion-button (click)="navegar_crear_diagnosticos(incidencia.ct_id_incidencia)">Registrar Diagnóstico</ion-button>
-    <ion-button (click)="navegar_asingacion_incidencias(incidencia.ct_id_incidencia)">Asignar Inicdencias</ion-button>
+    <ion-button class="custom-button" (click)="navegar_crear_diagnosticos(incidencia.ct_id_incidencia)">Registrar Diagnóstico</ion-button>
+    <ion-button class="custom-button" (click)="navegar_camibar_estado_incidencias(incidencia.ct_id_incidencia)">Cambiar estado</ion-button>
+    <ion-button class="custom-button" (click)="navegar_asingacion_incidencias(incidencia.ct_id_incidencia)">Asignar Inicdencias</ion-button>
   </ion-card>
 
   <ion-card>

@@ -21,23 +21,10 @@
 
 /* Estilo personalizado para el botón */
 .custom-button {
-  background-color: #007bff;
   color: #fff;
-  border: 1px solid #007bff;
   border-radius: 5px;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-.custom-button:hover {
-  background-color: #0056b3;
-  color: #fff;
-}
-
-.custom-button:active {
-  background-color: #003366;
-  color: #fff;
 }
 
 .diagnosticos-details {
@@ -60,7 +47,6 @@
   text-align: left;
 }
 
-/* Estilos CSS para tabla responsive */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -72,7 +58,6 @@
   text-align: left;
 }
 
-/* Estilos para hacer la tabla responsive */
 .table-responsive {
   overflow-x: auto;
 }
