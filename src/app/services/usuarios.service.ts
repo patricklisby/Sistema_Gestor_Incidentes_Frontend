@@ -69,4 +69,20 @@ export class UsuariosService {
     }
   }
 
+  async cambiarEstadoPorTecnicos(ct_id_incidencia: string): Promise<any> {
+    try {
+      const token = localStorage.getItem(this.tokenKey);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      });
+      const body = { ct_id_incidencia };
+      const response = await this.http.post(`${this.apiURL}cambiar_estado_por_tecnicos`, body, { headers }).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al cambiar estado de la incidencia:', error);
+      throw error;
+    }
+  }
+
 }//End of usuariosService
