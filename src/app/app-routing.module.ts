@@ -9,6 +9,7 @@ import { AsignarIncidenciasComponent } from './asignar-incidencias/asignar-incid
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
 import { GestionarUsuariosComponent } from './gestionar-usuarios/gestionar-usuarios.component';
 import { EditarUsuariosComponent } from './editar-usuarios/editar-usuarios.component';
+import { ReporteCargaPorTrabajoComponent } from './reporte-carga-por-trabajo/reporte-carga-por-trabajo.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,10 @@ const routes: Routes = [
   {
     path: 'editar_usuarios/:cn_id_usuario',
     component: EditarUsuariosComponent
+  },
+  {
+    path: 'reportes_carga_trabajo',
+    component: ReporteCargaPorTrabajoComponent
   },
 
 ];

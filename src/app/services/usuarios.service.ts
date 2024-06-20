@@ -83,7 +83,7 @@ export class UsuariosService {
       console.error('Error al cambiar estado de la incidencia:', error);
       throw error;
     }
-  }//end of cambiar_estado_por_tecnico
+  }
 
   async cambiar_estado_por_supervisor(ct_id_incidencia: string, cn_id_estado: any): Promise<any> {
     try {
@@ -101,5 +101,18 @@ export class UsuariosService {
     }
   }
 
+  async obtenerReporteCargaTrabajo(): Promise<any> {
+    try {
+      const token = localStorage.getItem(this.tokenKey);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      const response = await this.http.get(`${this.apiURL}reporte_carga_trabajo`, { headers }).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al obtener reporte de carga de trabajo:', error);
+      throw error;
+    }
+  }
 
-}//End of usuariosService
+}

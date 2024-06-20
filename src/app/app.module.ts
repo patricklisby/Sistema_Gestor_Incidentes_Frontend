@@ -18,6 +18,7 @@ import { AsignarIncidenciasComponent } from './asignar-incidencias/asignar-incid
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
 import { GestionarUsuariosComponent } from './gestionar-usuarios/gestionar-usuarios.component';
 import { EditarUsuariosComponent } from './editar-usuarios/editar-usuarios.component';
+import { ReporteCargaPorTrabajoComponent } from './reporte-carga-por-trabajo/reporte-carga-por-trabajo.component';
 
 
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
@@ -34,7 +35,8 @@ import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
     AsignarIncidenciasComponent,
     CrearUsuariosComponent,
     GestionarUsuariosComponent,
-    EditarUsuariosComponent
+    EditarUsuariosComponent,
+    ReporteCargaPorTrabajoComponent
   ],
   imports:[
     BrowserModule,

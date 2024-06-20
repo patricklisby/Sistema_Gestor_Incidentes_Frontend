@@ -45,6 +45,12 @@ export class SidemenuComponent implements OnInit {
     });
   }
 
+  navegar_reportes() {
+    this.router.navigate(['reportes_carga_trabajo']).then(() => {
+      this.menu.close();
+    });
+  }
+
   cerrar_sesion() {
     this.authService.logout();
     this.menu.close();
