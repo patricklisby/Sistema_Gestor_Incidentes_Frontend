@@ -83,6 +83,23 @@ export class UsuariosService {
       console.error('Error al cambiar estado de la incidencia:', error);
       throw error;
     }
+  }//end of cambiar_estado_por_tecnico
+
+  async cambiar_estado_por_supervisor(ct_id_incidencia: string, cn_id_estado: any): Promise<any> {
+    try {
+      const token = localStorage.getItem(this.tokenKey);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      });
+      const body = { ct_id_incidencia , cn_id_estado};
+      const response = await this.http.post(`${this.apiURL}cambiar_estado_supervisor`, body, { headers }).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al cambiar estado de la incidencia:', error);
+      throw error;
+    }
   }
+
 
 }//End of usuariosService

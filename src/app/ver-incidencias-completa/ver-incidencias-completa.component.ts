@@ -5,7 +5,7 @@ import { DiagnosticosService } from '../services/diagnosticos.service';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AsignarIncidenciasComponent } from '../asignar-incidencias/asignar-incidencias.component';
-import { UsuariosService } from '../services/usuarios.service'; 
+import { UsuariosService } from '../services/usuarios.service';
 
 @Component({
   selector: 'app-ver-incidencias-completa',
@@ -25,7 +25,7 @@ export class VerIncidenciasCompletaComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private modalController: ModalController
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -55,7 +55,7 @@ export class VerIncidenciasCompletaComponent implements OnInit {
       console.error('Error loading diagnosticos', error);
     }
   }
- 
+
   async cambiar_estado_incidencias(ct_id_incidencia: string) {
     try {
       const response = await this.usuariosService.cambiarEstadoPorTecnicos(ct_id_incidencia);
@@ -66,7 +66,26 @@ export class VerIncidenciasCompletaComponent implements OnInit {
       console.error('Error al cambiar el estado de la incidencia:', error);
     }
   }
-  
+
+  async validar_resultado(ct_id_incidencia: string, id_opcion: string) {
+    try {
+      let cn_id_estado;
+      if (id_opcion == '1') {
+        // 9 = cerrado
+        cn_id_estado = 9;
+      } else {
+        // 2 = cerrado
+        cn_id_estado = 2;
+      }
+      const response = await this.usuariosService.cambiar_estado_por_supervisor(ct_id_incidencia, cn_id_estado);
+      console.log('Estado de la incidencia actualizado:', response);
+      // Opcional: Puedes actualizar la vista o hacer alguna otra acción después de cambiar el estado
+      this.loadIncidencia(ct_id_incidencia); // Volver a cargar la incidencia para reflejar el nuevo estado
+    } catch (error) {
+      console.error('Error al cambiar el estado de la incidencia:', error);
+    }
+  }
+
 
   navegar_incidencias() {
     this.router.navigate(['/ver_incidencias']);
