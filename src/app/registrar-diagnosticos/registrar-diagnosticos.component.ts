@@ -46,11 +46,9 @@ export class RegistrarDiagnosticosComponent implements OnInit {
     });
 
     this.userId = this.authService.getUserInfo().userId; // Obtiene el ID del usuario logueado
-    console.log('User ID obtenido:', this.userId); // Verificar el ID obtenido
     if (this.userId) {
       this.diagnosticoForm.patchValue({ cn_id_usuario: this.userId });
     } else {
-      console.log("No hay sesión");
     }
   }
 

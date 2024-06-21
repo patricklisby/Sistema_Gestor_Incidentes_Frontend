@@ -21,10 +21,6 @@ export class AsignarIncidenciasComponent implements OnInit {
     private router: Router
   ) {}
 
-  /**
-   * Método de ciclo de vida de Angular que se ejecuta cuando el componente es inicializado.
-   * Carga la lista de técnicos desde el servicio de usuarios y añade la propiedad `seleccionado` a cada técnico.
-   */
   async ngOnInit() {
     try {
       this.tecnicos = await this.usuariosService.mostrar_tecnicos();
@@ -37,18 +33,10 @@ export class AsignarIncidenciasComponent implements OnInit {
     }
   }
 
-  /**
-   * Cierra el modal actual.
-   */
   dismissModal() {
     this.modalController.dismiss();
   }
 
-  /**
-   * Asigna los técnicos seleccionados a la incidencia.
-   * Filtra los técnicos seleccionados y llama al servicio de incidencias para asignar cada técnico.
-   * Muestra un mensaje de éxito o error mediante un toast.
-   */
   async asignarTecnicos() {
     const tecnicosSeleccionados = this.tecnicos.filter(tecnico => tecnico.seleccionado);
     try {
@@ -63,11 +51,6 @@ export class AsignarIncidenciasComponent implements OnInit {
     }
   }
 
-  /**
-   * Muestra un mensaje toast en la pantalla.
-   * @param message El mensaje a mostrar en el toast.
-   * @param color El color del toast (success, danger, etc.).
-   */
   async presentToast(message: string, color: string) {
     const toast = await this.toastController.create({
       message: message,

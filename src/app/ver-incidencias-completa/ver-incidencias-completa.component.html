@@ -29,7 +29,7 @@
     </ion-card-content>
     <ion-button expand="block" *ngIf="canRegisterDiagnostico" class="custom-button" (click)="navegar_crear_diagnosticos(incidencia.ct_id_incidencia)">Registrar Diagnóstico</ion-button>
     <ion-button expand="block" *ngIf="canChangeEstado && !isTerminated" class="custom-button" (click)="cambiar_estado_incidencias(incidencia.ct_id_incidencia)">Cambiar estado</ion-button>
-    <ion-button expand="block" class="custom-button" (click)="navegar_editar_incidencia(incidencia.ct_id_incidencia)">Completar Incidencia</ion-button>
+    <ion-button expand="block" *ngIf="canAssignIncidencias" class="custom-button" (click)="navegar_editar_incidencia(incidencia.ct_id_incidencia)">Completar Incidencia</ion-button>
     <ion-button expand="block" *ngIf="canAssignIncidencias" class="custom-button" (click)="navegar_asingacion_incidencias(incidencia.ct_id_incidencia)">Asignar Incidencias</ion-button>
     <ion-button expand="block" *ngIf="canAcceptReject" class="accept-button custom-button" (click)="validar_resultado(incidencia.ct_id_incidencia,'1')">Aceptar resultado</ion-button>
     <ion-button expand="block" *ngIf="canAcceptReject" class="reject-button custom-button" (click)="validar_resultado(incidencia.ct_id_incidencia,'2')">Rechazar resultado</ion-button>

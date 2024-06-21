@@ -46,7 +46,6 @@ export class CrearUsuariosComponent implements OnInit {
    */
   async cargarRoles() {
     this.roles = await this.usuariosService.obtener_roles();
-    console.log('Roles loaded:', this.roles);  // Verificar los roles cargados
   }
 
   /**
@@ -54,7 +53,6 @@ export class CrearUsuariosComponent implements OnInit {
    */
   async cargarDepartamentos() {
     this.departamentos = await this.usuariosService.obtener_departamentos();
-    console.log('Departamentos loaded:', this.departamentos);  // Verificar los departamentos cargados
   }
 
   /**

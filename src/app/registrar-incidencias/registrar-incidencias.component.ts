@@ -38,11 +38,11 @@ export class RegistrarIncidenciasComponent implements OnInit {
    */
   ngOnInit() {
     this.userId = this.authService.getUserInfo().userId; // Obtiene el ID del usuario logueado
-    console.log('User ID obtenido:', this.userId); // Verificar el ID obtenido
+
     if (this.userId) {
       this.incidenciaForm.patchValue({ cn_id_usuario_registro: this.userId });
     } else {
-      console.log("No hay sesión");
+
     }
   }
 

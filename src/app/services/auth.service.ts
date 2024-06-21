@@ -67,7 +67,6 @@ export class AuthService {
       const response = await this.http.post(`${this.apiURL}logout`, null, {
         headers: { Authorization: `Bearer ${token}` }
       }).toPromise();
-      console.log('Logout exitoso', response);
       localStorage.removeItem(this.tokenKey);
       localStorage.removeItem(this.rolesKey);
       this.isAuthenticated = false;
@@ -99,7 +98,6 @@ export class AuthService {
     if (token) {
       try {
         userInfo = jwtDecode(token);
-        console.log('Token decodificado:', userInfo);
       } catch (error) {
         console.error('Error al decodificar el token:', error);
       }
@@ -111,7 +109,6 @@ export class AuthService {
           ...userInfo,
           roles: parsedRoles
         };
-        console.log('Roles del usuario:', userInfo.roles);
       } catch (error) {
         console.error('Error al decodificar los roles:', error);
       }
@@ -125,7 +122,6 @@ export class AuthService {
    */
   getUserId(): number | null {
     const userInfo = this.getUserInfo();
-    console.log('Información del usuario:', userInfo);
     return userInfo ? userInfo.userId : null;
   }
 

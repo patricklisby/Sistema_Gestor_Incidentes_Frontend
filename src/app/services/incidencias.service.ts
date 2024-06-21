@@ -97,8 +97,6 @@ export class IncidenciasService {
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
-      console.log(ct_id_incidencia);
-      console.log(data);
       
       
       const response = await this.http.put(`${this.apiURL}editar_incidencia/${ct_id_incidencia}`, data, { headers }).toPromise();

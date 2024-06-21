@@ -86,7 +86,6 @@ export class VerIncidenciasCompletaComponent implements OnInit {
   async cambiar_estado_incidencias(ct_id_incidencia: string) {
     try {
       const response = await this.usuariosService.cambiarEstadoPorTecnicos(ct_id_incidencia);
-      console.log('Estado de la incidencia actualizado:', response);
       this.loadIncidencia(ct_id_incidencia);
       const successToast = await this.toastController.create({
         message: 'Estado cambiado con éxito',
@@ -109,7 +108,6 @@ export class VerIncidenciasCompletaComponent implements OnInit {
         cn_id_estado = 2;
       }
       const response = await this.usuariosService.cambiar_estado_por_supervisor(ct_id_incidencia, cn_id_estado);
-      console.log('Estado de la incidencia actualizado:', response);
       this.loadIncidencia(ct_id_incidencia);
     } catch (error) {
       console.error('Error al cambiar el estado de la incidencia:', error);
@@ -135,7 +133,6 @@ export class VerIncidenciasCompletaComponent implements OnInit {
     modal.onDidDismiss().then((data) => {
       const tecnicosSeleccionados = data.data;
       if (tecnicosSeleccionados) {
-        console.log('Técnicos seleccionados:', tecnicosSeleccionados);
       }
     });
 

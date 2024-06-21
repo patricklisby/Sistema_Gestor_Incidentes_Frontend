@@ -25,11 +25,7 @@ export class LoginPage implements OnInit {
    */
   ngOnInit(): void {
     const userInfo = this.authService.getUserInfo();
-    if (userInfo) {
-      console.log('Usuario logueado:', userInfo);
-    } else {
-      console.log('No hay usuario logueado');
-    }
+   
   }
 
   /**

@@ -50,7 +50,6 @@ export class UsuariosService {
   async obtener_roles(): Promise<any> {
     try {
       const response = await this.http.get(`${this.apiURL}mostrar_roles`).toPromise();
-     // console.log('Roles fetched:', response);
       return response;
     } catch (error) {
       console.error('Error al obtener roles:', error);
@@ -65,7 +64,6 @@ export class UsuariosService {
   async obtener_usuarios(): Promise<any> {
     try {
       const response = await this.http.get(`${this.apiURL}mostrar_usuarios`).toPromise();
-      //console.log(response);
       return response;
     } catch (error) {
       console.error('Error al obtener usuarios:', error);
@@ -80,7 +78,6 @@ export class UsuariosService {
   async obtener_departamentos(): Promise<any> {
     try {
       const response = await this.http.get(`${this.apiURL}mostrar_departamentos`).toPromise();
-      //console.log(response);
       return response;
     } catch (error) {
       console.error('Error al obtener departamentos:', error);
