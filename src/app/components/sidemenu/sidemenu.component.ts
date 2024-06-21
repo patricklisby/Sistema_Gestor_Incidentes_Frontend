@@ -10,7 +10,11 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SidemenuComponent implements OnInit {
   
-  nombreUsuario?: string ;
+  nombreUsuario?: string;
+  canAddIncidentes: boolean = false;
+  canManageSystem: boolean = false;
+  canViewReports: boolean = false;
+  canManageIncidentes : boolean = false;
 
   constructor(private authService: AuthService, private router: Router, private menu: MenuController) { }
 
@@ -18,7 +22,16 @@ export class SidemenuComponent implements OnInit {
     const userInfo = this.authService.getUserInfo();
     if (userInfo) {
       this.nombreUsuario = userInfo.nombre;
+      const roles = userInfo.roles;
+      this.canAddIncidentes = this.checkRole(roles, [1, 2, 3, 4, 5]); // Todos los roles
+      this.canManageSystem = this.checkRole(roles, [1]); // Solo rol 1
+      this.canViewReports = this.checkRole(roles, [1,3]); // Solo rol 3
+      this.canManageIncidentes = this.checkRole(roles, [1,3]);
     }
+  }
+ 
+  checkRole(userRoles: number[], allowedRoles: number[]): boolean {
+    return userRoles.some(role => allowedRoles.includes(role));
   }
 
   navegar_incidentes() {

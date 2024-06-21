@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AsignarIncidenciasComponent } from '../asignar-incidencias/asignar-incidencias.component';
 import { UsuariosService } from '../services/usuarios.service';
+import { AuthService } from '../services/auth.service'; // Import AuthService
 
 @Component({
   selector: 'app-ver-incidencias-completa',
@@ -17,6 +18,13 @@ export class VerIncidenciasCompletaComponent implements OnInit {
   incidencia: any = {};
   imagenes: string[] = [];
   diagnosticos: any[] = [];
+  roles: number[] = [];
+  isTerminated: boolean = false;
+
+  canRegisterDiagnostico: boolean = false;
+  canChangeEstado: boolean = false;
+  canAssignIncidencias: boolean = false;
+  canAcceptReject: boolean = false;
 
   constructor(
     private incidenciasService: IncidenciasService,
@@ -24,10 +32,17 @@ export class VerIncidenciasCompletaComponent implements OnInit {
     private usuariosService: UsuariosService,
     private route: ActivatedRoute,
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private authService: AuthService // Inject AuthService
   ) { }
 
   ngOnInit() {
+    const userInfo = this.authService.getUserInfo();
+    if (userInfo) {
+      this.roles = userInfo.roles;
+      this.setPermissions();
+    }
+
     this.route.paramMap.subscribe(params => {
       const ct_id_incidencia = params.get('ct_id_incidencia');
       if (ct_id_incidencia) {
@@ -37,11 +52,23 @@ export class VerIncidenciasCompletaComponent implements OnInit {
     });
   }
 
+  setPermissions() {
+    this.canRegisterDiagnostico = this.checkRole([4]);
+    this.canChangeEstado = this.checkRole([4]);
+    this.canAssignIncidencias = this.checkRole([3]);
+    this.canAcceptReject = this.checkRole([5]);
+  }
+
+  checkRole(allowedRoles: number[]): boolean {
+    return this.roles.some(role => allowedRoles.includes(role));
+  }
+
   async loadIncidencia(ct_id_incidencia: string) {
     try {
       const result = await this.incidenciasService.mostrar_incidencias_por_id(ct_id_incidencia);
       this.incidencia = result;
       this.imagenes = result.imagenes;
+      this.isTerminated = this.incidencia.cn_id_estado === 6; // Actualiza la propiedad isTerminated
     } catch (error) {
       console.error('Error loading incidencia', error);
     }
@@ -60,8 +87,7 @@ export class VerIncidenciasCompletaComponent implements OnInit {
     try {
       const response = await this.usuariosService.cambiarEstadoPorTecnicos(ct_id_incidencia);
       console.log('Estado de la incidencia actualizado:', response);
-      // Opcional: Puedes actualizar la vista o hacer alguna otra acción después de cambiar el estado
-      this.loadIncidencia(ct_id_incidencia); // Volver a cargar la incidencia para reflejar el nuevo estado
+      this.loadIncidencia(ct_id_incidencia);
     } catch (error) {
       console.error('Error al cambiar el estado de la incidencia:', error);
     }
@@ -71,21 +97,17 @@ export class VerIncidenciasCompletaComponent implements OnInit {
     try {
       let cn_id_estado;
       if (id_opcion == '1') {
-        // 9 = cerrado
         cn_id_estado = 9;
       } else {
-        // 2 = cerrado
         cn_id_estado = 2;
       }
       const response = await this.usuariosService.cambiar_estado_por_supervisor(ct_id_incidencia, cn_id_estado);
       console.log('Estado de la incidencia actualizado:', response);
-      // Opcional: Puedes actualizar la vista o hacer alguna otra acción después de cambiar el estado
-      this.loadIncidencia(ct_id_incidencia); // Volver a cargar la incidencia para reflejar el nuevo estado
+      this.loadIncidencia(ct_id_incidencia);
     } catch (error) {
       console.error('Error al cambiar el estado de la incidencia:', error);
     }
   }
-
 
   navegar_incidencias() {
     this.router.navigate(['/ver_incidencias']);
@@ -107,7 +129,6 @@ export class VerIncidenciasCompletaComponent implements OnInit {
       const tecnicosSeleccionados = data.data;
       if (tecnicosSeleccionados) {
         console.log('Técnicos seleccionados:', tecnicosSeleccionados);
-        // Aquí puedes manejar los técnicos seleccionados (por ejemplo, asignarlos a la incidencia)
       }
     });
 

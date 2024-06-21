@@ -27,11 +27,11 @@
         </div>
       </div>
     </ion-card-content>
-    <ion-button class="custom-button" (click)="navegar_crear_diagnosticos(incidencia.ct_id_incidencia)">Registrar Diagnóstico</ion-button>
-    <ion-button class="custom-button" (click)="cambiar_estado_incidencias(incidencia.ct_id_incidencia)">Cambiar estado</ion-button>
-    <ion-button class="custom-button" (click)="navegar_asingacion_incidencias(incidencia.ct_id_incidencia)">Asignar Inicdencias</ion-button>
-    <ion-button class="custom-button" (click)="validar_resultado(incidencia.ct_id_incidencia,'1')">Aceptar</ion-button>
-    <ion-button class="custom-button" (click)="validar_resultado(incidencia.ct_id_incidencia,'2')">Rechazar</ion-button>
+    <ion-button *ngIf="canRegisterDiagnostico" class="custom-button" (click)="navegar_crear_diagnosticos(incidencia.ct_id_incidencia)">Registrar Diagnóstico</ion-button>
+    <ion-button *ngIf="canChangeEstado && !isTerminated" class="custom-button" (click)="cambiar_estado_incidencias(incidencia.ct_id_incidencia)">Cambiar estado</ion-button>
+    <ion-button *ngIf="canAssignIncidencias" class="custom-button" (click)="navegar_asingacion_incidencias(incidencia.ct_id_incidencia)">Asignar Incidencias</ion-button>
+    <ion-button *ngIf="canAcceptReject" class="custom-button" (click)="validar_resultado(incidencia.ct_id_incidencia,'1')">Aceptar resultado</ion-button>
+    <ion-button *ngIf="canAcceptReject" class="custom-button" (click)="validar_resultado(incidencia.ct_id_incidencia,'2')">Rechazar resultado</ion-button>
   </ion-card>
 
   <ion-card>
