@@ -15,10 +15,20 @@ export class AuthService {
 
   constructor(private http: HttpClient, private alertController: AlertController) { }
 
+  /**
+   * Verifica si la sesión está autenticada.
+   * @returns `true` si el usuario está autenticado, de lo contrario `false`.
+   */
   isAuthenticatedSesion(): boolean {
     return this.isAuthenticated;
   }
 
+  /**
+   * Inicia sesión del usuario.
+   * @param ct_correo_institucional El correo institucional del usuario.
+   * @param ct_contrasena La contraseña del usuario.
+   * @returns Una promesa que se resuelve con la respuesta de inicio de sesión.
+   */
   async login(ct_correo_institucional: string, ct_contrasena: string): Promise<any> {
     try {
       const response = await this.http.post<any>(`${this.apiURL}login`, { ct_correo_institucional, ct_contrasena }).toPromise();
@@ -47,6 +57,10 @@ export class AuthService {
     }
   }
 
+  /**
+   * Cierra la sesión del usuario.
+   * @returns Una promesa que se resuelve con la respuesta de cierre de sesión.
+   */
   async logout(): Promise<any> {
     try {
       const token = localStorage.getItem(this.tokenKey);
@@ -74,6 +88,10 @@ export class AuthService {
     }
   }
 
+  /**
+   * Obtiene la información del usuario logueado a partir del token JWT.
+   * @returns Un objeto con la información del usuario o `null` si no hay token.
+   */
   getUserInfo(): any {
     const token = localStorage.getItem(this.tokenKey);
     const roles = localStorage.getItem(this.rolesKey);
@@ -101,12 +119,20 @@ export class AuthService {
     return userInfo;
   }
 
+  /**
+   * Obtiene el ID del usuario logueado.
+   * @returns El ID del usuario o `null` si no hay sesión.
+   */
   getUserId(): number | null {
     const userInfo = this.getUserInfo();
     console.log('Información del usuario:', userInfo);
     return userInfo ? userInfo.userId : null;
   }
 
+  /**
+   * Obtiene los roles del usuario logueado.
+   * @returns Un array con los roles del usuario o `null` si no hay roles.
+   */
   getUserRoles(): number[] | null {
     const roles = localStorage.getItem(this.rolesKey);
     if (roles) {

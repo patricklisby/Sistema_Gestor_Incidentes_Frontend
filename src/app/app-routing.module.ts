@@ -19,11 +19,15 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'ver_incidencias',
-    component: VerIncidenciasComponent,
+    component: VerIncidenciasComponent
+  },
+  {
+    path: 'ver_incidencias/:cn_id_usuario',
+    component: VerIncidenciasComponent
   },
   {
     path: 'ver_incidencias_completa/:ct_id_incidencia',
@@ -61,7 +65,6 @@ const routes: Routes = [
     path: 'reportes_carga_trabajo',
     component: ReporteCargaPorTrabajoComponent
   },
-
 ];
 
 @NgModule({

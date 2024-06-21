@@ -19,6 +19,10 @@ export class LoginPage implements OnInit {
     private toastController: ToastController
   ) { }
 
+  /**
+   * Método de ciclo de vida de Angular que se ejecuta cuando el componente es inicializado.
+   * Verifica si hay un usuario logueado e imprime la información del usuario en la consola.
+   */
   ngOnInit(): void {
     const userInfo = this.authService.getUserInfo();
     if (userInfo) {
@@ -28,6 +32,13 @@ export class LoginPage implements OnInit {
     }
   }
 
+  /**
+   * Maneja el evento de inicio de sesión.
+   * Llama al método de autenticación del servicio `AuthService` con las credenciales del usuario.
+   * Si la autenticación es exitosa, muestra un mensaje de bienvenida y navega a la página de visualización de incidencias.
+   * Si la autenticación falla, muestra un mensaje de error.
+   * @param event El evento de formulario.
+   */
   async login(event: Event) {
     event.preventDefault();
     try {
@@ -45,6 +56,10 @@ export class LoginPage implements OnInit {
     }
   }
 
+  /**
+   * Muestra un mensaje toast en la pantalla.
+   * @param message El mensaje a mostrar en el toast.
+   */
   async showToast(message: string) {
     const toast = await this.toastController.create({
       message: message,

@@ -23,6 +23,7 @@ export class RegistrarIncidenciasComponent implements OnInit {
     private router: Router,
     private authService: AuthService // Inyecta AuthService
   ) {
+    // Inicializa el formulario reactivo con validadores
     this.incidenciaForm = this.fb.group({
       ct_titulo_incidencia: ['', Validators.required],
       ct_descripcion_incidencia: ['', Validators.required],
@@ -31,6 +32,10 @@ export class RegistrarIncidenciasComponent implements OnInit {
     });
   }
 
+  /**
+   * Método de ciclo de vida de Angular que se ejecuta cuando el componente es inicializado.
+   * Obtiene el ID del usuario logueado y lo asigna al formulario.
+   */
   ngOnInit() {
     this.userId = this.authService.getUserInfo().userId; // Obtiene el ID del usuario logueado
     console.log('User ID obtenido:', this.userId); // Verificar el ID obtenido
@@ -41,6 +46,9 @@ export class RegistrarIncidenciasComponent implements OnInit {
     }
   }
 
+  /**
+   * Toma una foto usando la cámara y la añade al array de fotos.
+   */
   async takePhoto() {
     const image = await Camera.getPhoto({
       quality: 90,
@@ -53,6 +61,11 @@ export class RegistrarIncidenciasComponent implements OnInit {
     }
   }
 
+  /**
+   * Envía el formulario para registrar una nueva incidencia.
+   * Si el formulario es válido, llama al servicio de incidencias para registrar la incidencia junto con las fotos.
+   * Muestra mensajes de éxito o error mediante un toast.
+   */
   async onSubmit() {
     if (this.incidenciaForm.valid) {
       const { ct_titulo_incidencia, ct_descripcion_incidencia, ct_lugar, cn_id_usuario_registro } = this.incidenciaForm.value;
@@ -108,10 +121,18 @@ export class RegistrarIncidenciasComponent implements OnInit {
     }
   }
 
+  /**
+   * Navega a la página de visualización de incidencias.
+   */
   navigateToIncidencias() {
     this.router.navigate(['/ver_incidencias']);
   }
 
+  /**
+   * Convierte una URL de datos a un objeto Blob.
+   * @param dataurl La URL de datos a convertir.
+   * @returns Un objeto Blob.
+   */
   private dataURLtoBlob(dataurl: string) {
     const arr = dataurl.split(',');
     const mimeMatch = arr[0].match(/:(.*?);/);

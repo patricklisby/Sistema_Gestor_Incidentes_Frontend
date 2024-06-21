@@ -35,6 +35,10 @@ export class RegistrarDiagnosticosComponent implements OnInit {
     });
   }
 
+  /**
+   * Método de ciclo de vida de Angular que se ejecuta cuando el componente es inicializado.
+   * Obtiene el ID de la incidencia y el ID del usuario logueado, y los asigna al formulario.
+   */
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.ct_id_incidencia = params.get('ct_id_incidencia') ?? '';
@@ -50,6 +54,9 @@ export class RegistrarDiagnosticosComponent implements OnInit {
     }
   }
 
+  /**
+   * Toma una foto usando la cámara y la añade al array de fotos.
+   */
   async takePhoto() {
     const image = await Camera.getPhoto({
       quality: 90,
@@ -62,6 +69,11 @@ export class RegistrarDiagnosticosComponent implements OnInit {
     }
   }
 
+  /**
+   * Envía el formulario para registrar un nuevo diagnóstico.
+   * Si el formulario es válido, llama al servicio de diagnósticos para registrar el diagnóstico junto con las fotos.
+   * Muestra mensajes de éxito o error mediante un toast.
+   */
   async onSubmit() {
     if (this.diagnosticoForm.valid) {
       const { ct_diagnostico, cn_tiempo_estimado_reparacion, ct_observaciones, ct_id_incidencia, cn_id_usuario } = this.diagnosticoForm.value;
@@ -118,10 +130,19 @@ export class RegistrarDiagnosticosComponent implements OnInit {
     }
   }
 
+  /**
+   * Navega a la página de visualización de incidencias completas.
+   * @param ct_id_incidencia El ID de la incidencia a ver.
+   */
   navigateToIncidencias(ct_id_incidencia: string) {
     this.router.navigate(['/ver_incidencias_completa', ct_id_incidencia]);
   }
 
+  /**
+   * Convierte una URL de datos a un objeto Blob.
+   * @param dataurl La URL de datos a convertir.
+   * @returns Un objeto Blob.
+   */
   private dataURLtoBlob(dataurl: string) {
     const arr = dataurl.split(',');
     const mimeMatch = arr[0].match(/:(.*?);/);

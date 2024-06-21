@@ -19,6 +19,7 @@ export class CrearUsuariosComponent implements OnInit {
     private usuariosService: UsuariosService,
     private navCtrl: NavController
   ) {
+    // Inicializa el formulario con validadores
     this.usuarioForm = this.fb.group({
       ct_nombre_completo: ['', Validators.required],
       ct_cedula: ['', Validators.required],
@@ -31,23 +32,35 @@ export class CrearUsuariosComponent implements OnInit {
     });
   }
 
+  /**
+   * Método de ciclo de vida de Angular que se ejecuta cuando el componente es inicializado.
+   * Carga los roles y departamentos disponibles.
+   */
   ngOnInit() {
     this.cargarRoles();
     this.cargarDepartamentos();
   }
 
+  /**
+   * Carga los roles desde el servicio de usuarios y los asigna a la propiedad `roles`.
+   */
   async cargarRoles() {
     this.roles = await this.usuariosService.obtener_roles();
-    console.log('Roles loaded:', this.roles);  // Check loaded roles
+    console.log('Roles loaded:', this.roles);  // Verificar los roles cargados
   }
-  
 
+  /**
+   * Carga los departamentos desde el servicio de usuarios y los asigna a la propiedad `departamentos`.
+   */
   async cargarDepartamentos() {
     this.departamentos = await this.usuariosService.obtener_departamentos();
-    console.log('Departamentos loaded:', this.departamentos);  // Check loaded departments
+    console.log('Departamentos loaded:', this.departamentos);  // Verificar los departamentos cargados
   }
-  
 
+  /**
+   * Envía el formulario para registrar un nuevo usuario.
+   * Si el formulario es válido, llama al servicio de usuarios para registrar el usuario y navega a la página de gestión de usuarios.
+   */
   async onSubmit() {
     if (this.usuarioForm.valid) {
       try {

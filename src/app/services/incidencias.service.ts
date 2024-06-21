@@ -10,6 +10,10 @@ export class IncidenciasService {
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * Obtiene todas las incidencias.
+   * @returns Una promesa que se resuelve con los datos de las incidencias.
+   */
   async mostrar_incidencias(): Promise<any> {
     try {
       const token = localStorage.getItem(this.tokenKey);
@@ -19,10 +23,16 @@ export class IncidenciasService {
       const response = await this.http.get(`${this.apiURL}mostrar_incidentes`, { headers }).toPromise();
       return response;
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('Error al mostrar incidencias:', error);
+      throw error;
     }
   }
 
+  /**
+   * Obtiene las incidencias por ID de incidencia.
+   * @param ct_id_incidencia El ID de la incidencia.
+   * @returns Una promesa que se resuelve con los datos de la incidencia.
+   */
   async mostrar_incidencias_por_id(ct_id_incidencia: string): Promise<any> {
     try {
       const token = localStorage.getItem(this.tokenKey);
@@ -37,6 +47,11 @@ export class IncidenciasService {
     }
   }
 
+  /**
+   * Obtiene las incidencias por ID de usuario.
+   * @param ct_id_incidencia El ID del usuario.
+   * @returns Una promesa que se resuelve con los datos de las incidencias del usuario.
+   */
   async mostrar_incidencias_por_usuario(ct_id_incidencia: string): Promise<any> {
     try {
       const token = localStorage.getItem(this.tokenKey);
@@ -46,11 +61,16 @@ export class IncidenciasService {
       const response = await this.http.get(`${this.apiURL}mostrar_incidencias_por_usuario/${ct_id_incidencia}`, { headers }).toPromise();
       return response;
     } catch (error) {
-      console.error('Error en mostrar_incidencias_por_id:', error);
+      console.error('Error en mostrar_incidencias_por_usuario:', error);
       throw error;
     }
   }
 
+  /**
+   * Registra una nueva incidencia.
+   * @param formData Los datos del formulario que contienen la información de la incidencia.
+   * @returns Una promesa que se resuelve con la respuesta del registro de la incidencia.
+   */
   async registrar_incidencia(formData: FormData): Promise<any> {
     try {
       const token = localStorage.getItem(this.tokenKey);
@@ -66,6 +86,12 @@ export class IncidenciasService {
     }
   }
 
+  /**
+   * Asigna una incidencia a un usuario.
+   * @param ct_id_incidencia El ID de la incidencia.
+   * @param cn_id_usuario El ID del usuario.
+   * @returns Una promesa que se resuelve con la respuesta de la asignación.
+   */
   async asignarIncidencias(ct_id_incidencia: string, cn_id_usuario: string): Promise<any> {
     try {
       const token = localStorage.getItem(this.tokenKey);
@@ -81,5 +107,4 @@ export class IncidenciasService {
       throw error;
     }
   }
-
-}//End of incidencias
+}

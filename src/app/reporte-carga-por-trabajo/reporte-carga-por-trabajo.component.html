@@ -8,34 +8,37 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let data of reportData; let i = index" class="chart-container">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>{{ data.nombre }}</ion-card-title>
-        <ion-card-subtitle>{{ data.puesto }}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <div class="chart-wrapper">
-          <canvas [id]="'doughnut-canvas-' + i"></canvas>
-        </div>
-        <div class="chart-wrapper">
-          <canvas [id]="'bar-canvas-' + i"></canvas>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
-  <div class="incidencias-terminadas">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Incidencias Terminadas</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ul>
-          <li *ngFor="let incidencia of incidenciasTerminadas">
-            {{ incidencia.ct_id_incidencia }} - {{ incidencia.ct_descripcion_incidencia }}
-          </li>
-        </ul>
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <ion-card *ngFor="let data of reportData">
+    <ion-card-header>
+      <ion-card-title>{{ data.nombre }}</ion-card-title>
+      <ion-card-subtitle>{{ data.puesto }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Total Incidencias</ion-label>
+        <ion-badge color="primary">{{ data.total_incidencias }}</ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-label>Incidencias Terminadas</ion-label>
+        <ion-badge color="success">{{ data.total_incidencias_terminadas }}</ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-label>Promedio Tiempo de Reparación (horas)</ion-label>
+        <ion-badge color="warning">{{ data.promedio_tiempo_reparacion }}</ion-badge>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Incidencias Terminadas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let incidencia of incidenciasTerminadas">
+          <ion-label>{{ incidencia.ct_id_incidencia }} - {{ incidencia.ct_descripcion_incidencia }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
