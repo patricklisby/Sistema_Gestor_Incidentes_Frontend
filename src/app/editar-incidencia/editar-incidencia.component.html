@@ -1,0 +1,87 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="centered-title">Editar Incidencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="incidenciaForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Título</ion-label>
+        <ion-input formControlName="ct_titulo_incidencia"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea formControlName="ct_descripcion_incidencia"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Lugar</ion-label>
+        <ion-input formControlName="ct_lugar"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Fecha Completa Incidencia</ion-label>
+        <ion-datetime formControlName="cf_fecha_completa_incidencia"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Estado</ion-label>
+        <ion-input formControlName="cn_id_estado"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Justificación</ion-label>
+        <ion-textarea formControlName="ct_justificacion_incidencia"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Prioridad</ion-label>
+        <ion-select formControlName="cn_id_prioridad">
+          <ion-select-option *ngFor="let prioridad of prioridades" [value]="prioridad.cn_id_prioridad">
+            {{ prioridad.ct_descripcion_prioridad }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Riesgo</ion-label>
+        <ion-select formControlName="cn_id_riesgo">
+          <ion-select-option *ngFor="let riesgo of riesgos" [value]="riesgo.cn_id_riesgo">
+            {{ riesgo.ct_descripcion_riesgo }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Afectación</ion-label>
+        <ion-select formControlName="cn_id_afectacion">
+          <ion-select-option *ngFor="let afectacion of afectaciones" [value]="afectacion.cn_id_afectacion">
+            {{ afectacion.ct_descripcion_afectacion }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Categoría</ion-label>
+        <ion-select formControlName="cn_id_categoria">
+          <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.cn_id_categoria">
+            {{ categoria.ct_descripcion_categoria }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Monto Compra Materiales</ion-label>
+        <ion-input formControlName="cn_monto_compra_materiales" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Duración Reparación</ion-label>
+        <ion-input formControlName="cn_duracion_reparacion" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">ID Usuario Registro</ion-label>
+        <ion-input formControlName="cn_id_usuario_registro" type="number"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-footer>
+      <ion-button expand="full" type="submit" [disabled]="incidenciaForm.invalid">Guardar</ion-button>
+      <ion-button expand="full" color="medium" (click)="onCancel()">Cancelar</ion-button>
+    </ion-footer>
+  </form>
+</ion-content>

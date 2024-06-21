@@ -50,7 +50,7 @@ export class UsuariosService {
   async obtener_roles(): Promise<any> {
     try {
       const response = await this.http.get(`${this.apiURL}mostrar_roles`).toPromise();
-      console.log('Roles fetched:', response);
+     // console.log('Roles fetched:', response);
       return response;
     } catch (error) {
       console.error('Error al obtener roles:', error);
@@ -65,7 +65,7 @@ export class UsuariosService {
   async obtener_usuarios(): Promise<any> {
     try {
       const response = await this.http.get(`${this.apiURL}mostrar_usuarios`).toPromise();
-      console.log(response);
+      //console.log(response);
       return response;
     } catch (error) {
       console.error('Error al obtener usuarios:', error);
@@ -80,7 +80,7 @@ export class UsuariosService {
   async obtener_departamentos(): Promise<any> {
     try {
       const response = await this.http.get(`${this.apiURL}mostrar_departamentos`).toPromise();
-      console.log(response);
+      //console.log(response);
       return response;
     } catch (error) {
       console.error('Error al obtener departamentos:', error);
@@ -185,4 +185,45 @@ export class UsuariosService {
       throw error;
     }
   }
+
+  async obtenerPrioridades(): Promise<any> {
+    try {
+      const response = await this.http.get(`${this.apiURL}mostrar_prioridades`).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al obtener las prioridades:', error);
+      throw error;
+    }
+  }
+
+  async obtenerRiesgos(): Promise<any> {
+    try {
+      const response = await this.http.get(`${this.apiURL}mostrar_riesgos`).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al obtener los riesgos:', error);
+      throw error;
+    }
+  }
+
+  async obtenerAfectaciones(): Promise<any> {
+    try {
+      const response = await this.http.get(`${this.apiURL}mostrar_afectaciones`).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al obtener las afectaciones:', error);
+      throw error;
+    }
+  }
+
+  async obtenerCategorias(): Promise<any> {
+    try {
+      const response = await this.http.get(`${this.apiURL}mostrar_categorias`).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al obtener las categorías:', error);
+      throw error;
+    }
+  }
+
 }

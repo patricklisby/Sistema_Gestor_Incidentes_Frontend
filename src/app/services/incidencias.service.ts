@@ -87,6 +87,29 @@ export class IncidenciasService {
   }
 
   /**
+   * Edita una incidencia existente.
+   * @param formData Los datos del formulario que contienen la información de la incidencia.
+   * @returns Una promesa que se resuelve con la respuesta de la edición de la incidencia.
+   */
+  async editar_incidencia(ct_id_incidencia: string, data: any): Promise<any> {
+    try {
+      const token = localStorage.getItem(this.tokenKey);
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      console.log(ct_id_incidencia);
+      console.log(data);
+      
+      
+      const response = await this.http.put(`${this.apiURL}editar_incidencia/${ct_id_incidencia}`, data, { headers }).toPromise();
+      return response;
+    } catch (error) {
+      console.error('Error al editar la incidencia:', error);
+      throw error;
+    }
+  }
+
+  /**
    * Asigna una incidencia a un usuario.
    * @param ct_id_incidencia El ID de la incidencia.
    * @param cn_id_usuario El ID del usuario.

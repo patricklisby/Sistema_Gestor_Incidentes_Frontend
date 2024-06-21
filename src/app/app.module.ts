@@ -19,6 +19,7 @@ import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.componen
 import { GestionarUsuariosComponent } from './gestionar-usuarios/gestionar-usuarios.component';
 import { EditarUsuariosComponent } from './editar-usuarios/editar-usuarios.component';
 import { ReporteCargaPorTrabajoComponent } from './reporte-carga-por-trabajo/reporte-carga-por-trabajo.component';
+import { EditarIncidenciaComponent } from './editar-incidencia/editar-incidencia.component';
 
 
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
@@ -36,7 +37,8 @@ import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
     CrearUsuariosComponent,
     GestionarUsuariosComponent,
     EditarUsuariosComponent,
-    ReporteCargaPorTrabajoComponent
+    ReporteCargaPorTrabajoComponent,
+    EditarIncidenciaComponent
   ],
   imports:[
     BrowserModule,
