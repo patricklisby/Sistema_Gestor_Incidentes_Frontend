@@ -85,7 +85,14 @@ export class VerIncidenciasCompletaComponent implements OnInit {
 
   async cambiar_estado_incidencias(ct_id_incidencia: string) {
     try {
-      const response = await this.usuariosService.cambiarEstadoPorTecnicos(ct_id_incidencia);
+      // Obtén el ID del usuario logueado
+      const cn_id_usuario = this.authService.getUserId();
+
+      if (!cn_id_usuario) {
+        throw new Error('No se pudo obtener el ID del usuario logueado');
+      }
+
+      const response = await this.usuariosService.cambiarEstadoPorTecnicos(ct_id_incidencia, cn_id_usuario);
       this.loadIncidencia(ct_id_incidencia);
       const successToast = await this.toastController.create({
         message: 'Estado cambiado con éxito',

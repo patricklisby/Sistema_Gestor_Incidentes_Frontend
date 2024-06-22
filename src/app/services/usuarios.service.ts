@@ -90,14 +90,14 @@ export class UsuariosService {
    * @param ct_id_incidencia El ID de la incidencia.
    * @returns Una promesa que se resuelve con la respuesta de la operación.
    */
-  async cambiarEstadoPorTecnicos(ct_id_incidencia: string): Promise<any> {
+  async cambiarEstadoPorTecnicos(ct_id_incidencia: string, cn_id_usuario:any): Promise<any> {
     try {
       const token = localStorage.getItem(this.tokenKey);
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       });
-      const body = { ct_id_incidencia };
+      const body = { ct_id_incidencia, cn_id_usuario };
       const response = await this.http.post(`${this.apiURL}cambiar_estado_por_tecnicos`, body, { headers }).toPromise();
       return response;
     } catch (error) {
