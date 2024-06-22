@@ -112,14 +112,14 @@ export class UsuariosService {
    * @param cn_id_estado El nuevo estado de la incidencia.
    * @returns Una promesa que se resuelve con la respuesta de la operación.
    */
-  async cambiar_estado_por_supervisor(ct_id_incidencia: string, cn_id_estado: any): Promise<any> {
+  async cambiar_estado_por_supervisor(ct_id_incidencia: string, cn_id_estado: any, cn_id_usuario: any): Promise<any> {
     try {
       const token = localStorage.getItem(this.tokenKey);
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       });
-      const body = { ct_id_incidencia, cn_id_estado };
+      const body = { ct_id_incidencia, cn_id_estado, cn_id_usuario };
       const response = await this.http.post(`${this.apiURL}cambiar_estado_supervisor`, body, { headers }).toPromise();
       return response;
     } catch (error) {

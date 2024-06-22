@@ -107,7 +107,15 @@ export class VerIncidenciasCompletaComponent implements OnInit {
       } else {
         cn_id_estado = 2;
       }
-      const response = await this.usuariosService.cambiar_estado_por_supervisor(ct_id_incidencia, cn_id_estado);
+
+      // Obtén el ID del usuario logueado
+      const cn_id_usuario = this.authService.getUserId();
+
+      if (!cn_id_usuario) {
+        throw new Error('No se pudo obtener el ID del usuario logueado');
+      }
+
+      const response = await this.usuariosService.cambiar_estado_por_supervisor(ct_id_incidencia, cn_id_estado, cn_id_usuario);
       this.loadIncidencia(ct_id_incidencia);
     } catch (error) {
       console.error('Error al cambiar el estado de la incidencia:', error);
@@ -133,6 +141,7 @@ export class VerIncidenciasCompletaComponent implements OnInit {
     modal.onDidDismiss().then((data) => {
       const tecnicosSeleccionados = data.data;
       if (tecnicosSeleccionados) {
+        this.loadIncidencia(ct_id_incidencia);
       }
     });
 
