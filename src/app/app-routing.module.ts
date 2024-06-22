@@ -11,6 +11,7 @@ import { GestionarUsuariosComponent } from './gestionar-usuarios/gestionar-usuar
 import { EditarUsuariosComponent } from './editar-usuarios/editar-usuarios.component';
 import { ReporteCargaPorTrabajoComponent } from './reporte-carga-por-trabajo/reporte-carga-por-trabajo.component';
 import { EditarIncidenciaComponent } from './editar-incidencia/editar-incidencia.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -24,51 +25,63 @@ const routes: Routes = [
   },
   {
     path: 'ver_incidencias',
-    component: VerIncidenciasComponent
+    component: VerIncidenciasComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'ver_incidencias/:cn_id_usuario',
-    component: VerIncidenciasComponent
+    component: VerIncidenciasComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'ver_incidencias_completa/:ct_id_incidencia',
-    component: VerIncidenciasCompletaComponent
+    component: VerIncidenciasCompletaComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'registrar_incidencia',
-    component: RegistrarIncidenciasComponent
+    component: RegistrarIncidenciasComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'registrar_diagnosticos/:ct_id_incidencia',
-    component: RegistrarDiagnosticosComponent
+    component: RegistrarDiagnosticosComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'ver_diagnosticos/:ct_id_incidencia',
-    component: VerDiagnosticosComponent
+    component: VerDiagnosticosComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'asignar_incidencias/:ct_id_incidencia',
-    component: AsignarIncidenciasComponent
+    component: AsignarIncidenciasComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'gestionar_usuarios',
-    component: GestionarUsuariosComponent
+    component: GestionarUsuariosComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'crear_usuarios',
-    component: CrearUsuariosComponent
+    component: CrearUsuariosComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'editar_usuarios/:cn_id_usuario',
-    component: EditarUsuariosComponent
+    component: EditarUsuariosComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'reportes_carga_trabajo',
-    component: ReporteCargaPorTrabajoComponent
+    component: ReporteCargaPorTrabajoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'editar_incidencia/:ct_id_incidencia',
-    component: EditarIncidenciaComponent
+    component: EditarIncidenciaComponent,
+    canActivate: [AuthGuard]
   },
 ];
 
